@@ -52,37 +52,40 @@ export default function CaseStudyModal({
       onClick={onClose}
     >
       <div
-        className="flex max-h-[85vh] w-full max-w-[720px] flex-col overflow-y-auto rounded bg-background"
+        className="flex max-h-[85vh] w-full max-w-[720px] flex-col overflow-hidden rounded bg-background"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="relative aspect-[720/212] w-full shrink-0">
-          <Image
-            src={caseStudy.modalImage}
-            alt={caseStudy.title}
-            fill
-            className="object-cover"
-            sizes="720px"
-          />
-        </div>
-        <div className="flex flex-col gap-4 border-t border-border px-6 pt-4 pb-6">
-          <p className="font-serif text-base font-semibold text-default-text">
-            {caseStudy.title}
-          </p>
-          <div className="flex flex-wrap gap-4 text-sm">
-            <div className="flex items-center gap-1">
-              <p className="text-secondary-text">My role:</p>
-              <p className="text-default-text">{caseStudy.role}</p>
-            </div>
-            <div className="flex items-center gap-1">
-              <p className="text-secondary-text">Company:</p>
-              <p className="text-default-text">{caseStudy.company}</p>
-            </div>
-            <div className="flex items-center gap-1">
-              <p className="text-secondary-text">Timeframe:</p>
-              <p className="text-default-text">{caseStudy.timeframe}</p>
+        <div className="flex shrink-0 flex-col gap-4 border-b border-border">
+          <div className="relative aspect-[720/212] w-full">
+            <Image
+              src={caseStudy.modalImage}
+              alt={caseStudy.title}
+              fill
+              className="object-cover"
+              sizes="720px"
+            />
+          </div>
+          <div className="flex flex-col gap-4 px-6 pb-4">
+            <p className="font-serif text-base font-semibold text-default-text">
+              {caseStudy.title}
+            </p>
+            <div className="flex flex-wrap gap-4 text-sm">
+              <div className="flex items-center gap-1">
+                <p className="text-secondary-text">My role:</p>
+                <p className="text-default-text">{caseStudy.role}</p>
+              </div>
+              <div className="flex items-center gap-1">
+                <p className="text-secondary-text">Company:</p>
+                <p className="text-default-text">{caseStudy.company}</p>
+              </div>
+              <div className="flex items-center gap-1">
+                <p className="text-secondary-text">Timeframe:</p>
+                <p className="text-default-text">{caseStudy.timeframe}</p>
+              </div>
             </div>
           </div>
-          <hr className="border-border" />
+        </div>
+        <div className="flex flex-col gap-4 overflow-y-auto px-6 pt-4 pb-6">
           <div className="flex flex-col gap-4 text-sm text-default-text">
             {caseStudy.body.map((paragraph, index) => (
               <p key={index} className="leading-[1.5]">
