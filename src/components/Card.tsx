@@ -11,18 +11,18 @@ export default function Card({ caseStudy, onClick }: CardProps) {
     <button
       type="button"
       onClick={onClick}
-      className="flex cursor-pointer flex-col items-start overflow-hidden rounded text-left border border-border shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_8px_16px_0px_rgba(0,0,0,0.1)]"
+      className="group flex cursor-pointer flex-col items-start overflow-hidden rounded-[8px] text-left border border-border shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_8px_16px_0px_rgba(0,0,0,0.2)]"
     >
-      <div className="relative aspect-16/9 w-full">
+      <div className="relative aspect-16/9 w-full overflow-hidden">
         <Image
           src={caseStudy.cardImage}
           alt={caseStudy.title}
           fill
-          className="object-cover"
+          className="object-cover transition-transform duration-300 ease-out group-hover:scale-110"
           sizes="(min-width: 768px) 50vw, 100vw"
         />
       </div>
-      <div className="flex w-full flex-col gap-2 border-t border-border bg-background p-4">
+      <div className="flex w-full flex-col gap-4 border-t border-border bg-background p-4">
         <div className="flex flex-col gap-0.5 text-default-text">
           <p className="font-serif text-lg font-semibold">
             {caseStudy.title}

@@ -5,6 +5,7 @@
   --color-secondary-text: #717171;
   --color-border: #efefef;
   --color-border-content: #d1d1d1;
+  --color-strong-border: #494949;
   --color-background: #ffffff;
   --color-signal: #7dde78;
   --color-previous-signal: #bfbfbf;
@@ -15,6 +16,7 @@
   --color-secondary-text: var(--color-secondary-text);
   --color-border: var(--color-border);
   --color-border-content: var(--color-border-content);
+  --color-strong-border: var(--color-strong-border);
   --color-background: var(--color-background);
   --color-signal: var(--color-signal);
   --color-previous-signal: var(--color-previous-signal);
@@ -28,4 +30,54 @@
 body {
   background: var(--color-background);
   color: var(--color-default-text);
+}
+
+@keyframes grow-vertical {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-grow-vertical {
+  transform-origin: top;
+  animation: grow-vertical 600ms ease-out 1.4s backwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 600ms ease-out 0.7s backwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 600ms ease-out 0.7s backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-grow-vertical,
+  .animate-fade-in-up,
+  .animate-fade-in {
+    animation: none;
+  }
 }

@@ -8,6 +8,9 @@ const SOCIAL_LINKS = [
   { label: "Email", href: "mailto:hello@marihirano.com" },
 ];
 
+const underlineClass =
+  "absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-current transition-none group-hover:scale-x-100 group-hover:transition-transform group-hover:duration-300 group-hover:delay-150 group-hover:ease-out";
+
 export default function Header() {
   return (
     <header className="sticky top-0 z-10 border-b border-border bg-background py-6">
@@ -18,8 +21,9 @@ export default function Header() {
         </div>
         <nav className="flex flex-wrap items-center gap-4 whitespace-nowrap font-serif font-normal text-default-text">
           {NAV_LINKS.map((link) => (
-            <a key={link.label} href={link.href}>
+            <a key={link.label} href={link.href} className="group relative">
               {link.label}
+              <span className={underlineClass} />
             </a>
           ))}
           <span className="text-[18px] text-border-content">|</span>
@@ -27,12 +31,13 @@ export default function Header() {
             <a
               key={link.label}
               href={link.href}
-              className="text-secondary-text"
+              className="group relative text-secondary-text"
               {...(link.label === "Linkedin"
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
             >
               {link.label}
+              <span className={underlineClass} />
             </a>
           ))}
         </nav>
