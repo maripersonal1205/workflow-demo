@@ -10,7 +10,7 @@ export default function Hero() {
           <p className="whitespace-nowrap text-base text-border-content">|</p>
           <p className="whitespace-nowrap text-secondary-text">Based in LA</p>
         </div>
-        <p className="w-full font-serif text-[32px] leading-[1.2] text-default-text">
+        <p className="w-full max-w-[782px] font-serif text-[32px] leading-[1.2] text-default-text">
           I learn problems until they feel like my own — now that ideas can
           become real in hours, I can uncover user insights and constraints I
           simply couldn&apos;t reach before.
