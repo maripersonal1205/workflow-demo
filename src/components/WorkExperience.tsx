@@ -3,7 +3,7 @@ import { workExperience } from "@/data/work-experience";
 export default function WorkExperience() {
   return (
     <section id="work-experience" className="flex flex-col gap-6 scroll-mt-24">
-      <h2 className="font-serif text-base font-semibold text-default-text">
+      <h2 className="font-serif text-lg font-semibold text-default-text">
         Work experience
       </h2>
       <div className="flex flex-col">
@@ -16,17 +16,17 @@ export default function WorkExperience() {
               )}
             </div>
             <div className="flex flex-1 flex-col gap-1 pb-8 sm:flex-row">
-              <p className="shrink-0 text-sm text-secondary-text sm:w-[207px]">
+              <p className="shrink-0 text-base text-secondary-text sm:w-[207px]">
                 {entry.dates}
               </p>
               <div className="flex flex-1 flex-col justify-center gap-2">
                 <div className="flex flex-col">
-                  <p className="font-serif text-base font-semibold text-default-text">
+                  <p className="font-serif text-lg font-semibold text-default-text">
                     {entry.company}
                   </p>
-                  <p className="text-sm text-secondary-text">{entry.role}</p>
+                  <p className="text-base text-secondary-text">{entry.role}</p>
                 </div>
-                <p className="text-sm text-default-text">
+                <p className="text-base text-default-text">
                   {entry.description}
                 </p>
               </div>

@@ -10,8 +10,8 @@ const SOCIAL_LINKS = [
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-10 border-b border-border bg-background px-6 py-6 md:px-12">
-      <div className="flex w-full flex-col items-start gap-4 text-sm md:flex-row md:items-center md:justify-between">
+    <header className="sticky top-0 z-10 border-b border-border bg-background py-6">
+      <div className="mx-auto flex w-full max-w-[1000px] flex-col items-start gap-4 px-6 text-base md:flex-row md:items-center md:justify-between">
         <div className="flex flex-wrap items-center gap-2 font-serif text-default-text">
           <p className="whitespace-nowrap font-medium">Mari Hirano</p>
           <p className="whitespace-nowrap font-normal">Senior Product Designer</p>
@@ -22,7 +22,7 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <span className="text-[16px] text-border-content">|</span>
+          <span className="text-[18px] text-border-content">|</span>
           {SOCIAL_LINKS.map((link) => (
             <a
               key={link.label}

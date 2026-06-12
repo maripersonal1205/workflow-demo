@@ -5,7 +5,7 @@ import "./globals.css";
 const newsreader = Newsreader({
   variable: "--font-newsreader",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
 });
 
 const inter = Inter({
@@ -29,7 +29,7 @@ export default function RootLayout({
       lang="en"
       className={`${newsreader.variable} ${inter.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans text-sm text-default-text">
+      <body className="min-h-full flex flex-col font-sans text-base text-default-text">
         {children}
       </body>
     </html>

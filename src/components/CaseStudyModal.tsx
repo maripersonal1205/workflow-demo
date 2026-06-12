@@ -66,10 +66,10 @@ export default function CaseStudyModal({
             />
           </div>
           <div className="flex flex-col gap-4 px-6 pb-4">
-            <p className="font-serif text-base font-semibold text-default-text">
+            <p className="font-serif text-lg font-semibold text-default-text">
               {caseStudy.title}
             </p>
-            <div className="flex flex-wrap gap-4 text-sm">
+            <div className="flex flex-wrap gap-4 text-base">
               <div className="flex items-center gap-1">
                 <p className="text-secondary-text">My role:</p>
                 <p className="text-default-text">{caseStudy.role}</p>
@@ -86,7 +86,7 @@ export default function CaseStudyModal({
           </div>
         </div>
         <div className="flex flex-col gap-4 overflow-y-auto px-6 pt-4 pb-6">
-          <div className="flex flex-col gap-4 text-sm text-default-text">
+          <div className="flex flex-col gap-4 text-base text-default-text">
             {caseStudy.body.map((paragraph, index) => (
               <p key={index} className="leading-[1.5]">
                 {paragraph}
@@ -97,8 +97,8 @@ export default function CaseStudyModal({
             <>
               <hr className="border-border" />
               <div className="flex flex-col gap-1">
-                <p className="text-sm text-secondary-text">Launch details:</p>
-                <div className="flex flex-wrap items-center gap-2 text-sm">
+                <p className="text-base text-secondary-text">Launch details:</p>
+                <div className="flex flex-wrap items-center gap-2 text-base">
                   {caseStudy.launchDetails.map((detail, index) => (
                     <span key={detail.label} className="flex items-center gap-2">
                       {index > 0 && <span className="text-border">|</span>}
