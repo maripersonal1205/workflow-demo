@@ -44,8 +44,8 @@ export default function Header() {
   const [toastShown, setToastShown] = useState(false);
   const [toastPosition, setToastPosition] = useState({ x: 0, y: 0 });
   const toastRef = useRef<HTMLDivElement>(null);
-  const hideTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
-  const unmountTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const hideTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const unmountTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const closeToast = () => {
     setToastShown(false);
