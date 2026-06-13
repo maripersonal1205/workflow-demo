@@ -1,5 +1,5 @@
 const NAV_LINKS = [
-  { label: "Work", href: "/" },
+  { label: "Work", href: "#work" },
   { label: "Resume", href: "#work-experience" },
 ];
 

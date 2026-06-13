@@ -10,7 +10,7 @@ export default function CaseStudiesSection() {
   const activeCaseStudy = caseStudies.find((cs) => cs.id === activeId);
 
   return (
-    <section id="work" className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <section id="work" className="grid scroll-mt-25 grid-cols-1 gap-4 md:grid-cols-2">
       {caseStudies.map((caseStudy) => (
         <Card
           key={caseStudy.id}
