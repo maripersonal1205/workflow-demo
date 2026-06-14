@@ -2,11 +2,15 @@ export default function Hero() {
   return (
     <section className="flex flex-col gap-10">
       <div className="flex flex-col items-start gap-6">
-        <p className="w-[755px] font-serif font-normal text-[40px] leading-[1.1] text-default-text">
-          I learn problems until they feel like my own. Now that ideas can
-          become real in hours, I can uncover user insights and constraints I
-          couldn&apos;t reach before.
-        </p>
+        <div className="flex w-full max-w-[755px] flex-col font-serif text-[32px] leading-[1.1] text-default-text sm:text-[40px]">
+          <p className="w-full font-normal">
+            I learn problems until they feel like my own.
+          </p>
+          <p className="w-full font-light">
+            Now that ideas can become real in hours, I am uncovering user
+            insights and constraints I couldn&apos;t reach before.
+          </p>
+        </div>
       </div>
       <div className="flex flex-wrap items-start gap-16 text-base">
         <div className="animate-fade-in-up relative flex flex-col items-start gap-0.5 pl-6 text-default-text">
