@@ -122,11 +122,11 @@ export default function Header() {
   }, [toastShown]);
 
   return (
-    <header className="sticky top-0 z-10 border-b border-border bg-background pt-8 pb-6 md:py-6">
+    <header className="sticky top-0 z-10 border-b border-border bg-background pt-4 pb-6 md:py-6">
       <div className="mx-auto flex w-full max-w-[1000px] flex-row items-center justify-between pl-4 pr-6 text-base md:px-6">
         <a
           href="https://marihirano.com"
-          className="flex flex-col gap-2 font-serif text-default-text md:flex-row md:flex-wrap md:items-center"
+          className="flex flex-col gap-0.5 font-serif leading-none text-default-text md:flex-row md:flex-wrap md:items-center md:gap-2 md:leading-normal"
         >
           <p className="whitespace-nowrap font-medium">Mari Hirano</p>
           <p className="whitespace-nowrap font-normal">Senior Product Designer</p>
@@ -196,14 +196,14 @@ export default function Header() {
       )}
       {menuMounted && (
         <div
-          className={`fixed inset-0 z-40 flex flex-col gap-9 border-b border-border bg-background pt-8 pb-6 shadow-card transition-transform duration-300 ease-out md:hidden ${
+          className={`fixed inset-0 z-40 flex flex-col gap-9 border-b border-border bg-background pt-4 pb-6 shadow-card transition-transform duration-300 ease-out md:hidden ${
             menuShown ? "translate-x-0" : "translate-x-full"
           }`}
         >
           <div className="flex items-center justify-between pl-4 pr-6">
             <span
               aria-hidden="true"
-              className="invisible flex flex-col gap-2 font-serif text-base"
+              className="invisible flex flex-col gap-0.5 font-serif text-base leading-none"
             >
               <span className="font-medium">Mari Hirano</span>
               <span className="font-normal">Senior Product Designer</span>
