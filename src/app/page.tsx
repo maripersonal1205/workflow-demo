@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="flex min-h-full flex-col">
       <Header />
-      <main className="mx-auto flex w-full max-w-[1000px] flex-1 flex-col gap-20 px-6 py-20">
+      <main className="mx-auto flex w-full max-w-[1000px] flex-1 flex-col gap-10 px-4 pt-10 pb-20 md:gap-20 md:px-6 md:py-20">
         <Hero />
         <CaseStudiesSection />
         <div className="flex flex-col gap-6">

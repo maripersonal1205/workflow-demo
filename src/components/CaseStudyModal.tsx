@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import type { CaseStudy } from "@/data/case-studies";
 
@@ -69,22 +69,6 @@ function ZoomIcon() {
   );
 }
 
-function ChevronLeftIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function ChevronRightIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function chunkPairs<T>(items: T[]): T[][] {
   const rows: T[][] = [];
   for (let i = 0; i < items.length; i += 2) {
@@ -125,24 +109,16 @@ export default function CaseStudyModal({
     };
   }, [onClose, expandedIndex, images.length]);
 
-  const goToPrevImage = () => {
-    setExpandedIndex((index) => (index === null ? null : (index - 1 + images.length) % images.length));
-  };
-
-  const goToNextImage = () => {
-    setExpandedIndex((index) => (index === null ? null : (index + 1) % images.length));
-  };
-
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-6"
+      className="fixed inset-0 z-50 flex bg-background md:items-center md:justify-center md:bg-black/60 md:p-6"
       onClick={onClose}
     >
       <div
-        className="flex max-h-[85vh] w-full max-w-[640px] flex-col overflow-hidden rounded-lg bg-background pt-6 pb-8 shadow-card"
+        className="flex h-full w-full flex-col overflow-hidden bg-background md:h-auto md:max-h-[85vh] md:max-w-[640px] md:rounded-lg md:pt-6 md:pb-8 md:shadow-card"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="flex shrink-0 flex-col gap-3 px-8">
+        <div className="flex shrink-0 flex-col gap-6 px-4 pt-6 md:gap-3 md:px-8 md:pt-0">
           <div className="flex w-full flex-col items-end gap-0.5">
             <button
               type="button"
@@ -163,26 +139,26 @@ export default function CaseStudyModal({
           </div>
           <div className="h-px w-full bg-border" />
         </div>
-        <div className="flex min-h-0 flex-col gap-6 overflow-y-auto px-8 pt-6">
-          <div className="flex w-full gap-2 text-sm">
-            <div className="flex w-[220px] shrink-0 flex-col gap-1">
+        <div className="flex min-h-0 flex-col gap-6 overflow-y-auto px-4 pt-6 pb-6 md:px-8 md:pb-0">
+          <div className="flex w-full flex-col gap-2 text-sm md:flex-row">
+            <div className="flex flex-col gap-2 md:w-[220px] md:shrink-0 md:gap-1">
               <div className="flex items-center gap-1">
-                <p className="w-[69px] shrink-0 text-secondary-text">My role:</p>
+                <p className="w-20 shrink-0 text-secondary-text md:w-[69px]">My role:</p>
                 <p className="whitespace-nowrap text-default-text">{caseStudy.role}</p>
               </div>
               <div className="flex items-center gap-1">
-                <p className="w-[69px] shrink-0 text-secondary-text">Company:</p>
+                <p className="w-20 shrink-0 text-secondary-text md:w-[69px]">Company:</p>
                 <p className="whitespace-nowrap text-default-text">{caseStudy.company}</p>
               </div>
             </div>
-            <div className="flex flex-1 flex-col gap-1">
+            <div className="flex flex-col gap-2 md:flex-1 md:gap-1">
               <div className="flex items-center gap-1">
-                <p className="w-[51px] shrink-0 text-secondary-text">Status:</p>
+                <p className="w-20 shrink-0 text-secondary-text md:w-[51px]">Status:</p>
                 <p className="whitespace-nowrap text-default-text">{caseStudy.status}</p>
               </div>
               {caseStudy.impact && (
                 <div className="flex items-center gap-1">
-                  <p className="shrink-0 text-secondary-text">Impact:</p>
+                  <p className="w-20 shrink-0 text-secondary-text md:w-auto">Impact:</p>
                   <p className="whitespace-nowrap text-default-text">{caseStudy.impact}</p>
                 </div>
               )}
@@ -226,27 +202,33 @@ export default function CaseStudyModal({
             ))}
           </div>
           {caseStudy.launchDetails && caseStudy.launchDetails.length > 0 && (
-            <div className="flex w-full flex-wrap items-center gap-2 text-sm">
+            <div className="flex w-full flex-col gap-2 text-sm md:flex-row md:flex-wrap md:items-center">
               <p className="font-bold text-default-text">To learn more, visit:</p>
-              {caseStudy.launchDetails.map((detail) => (
-                <a
-                  key={detail.label}
-                  href={detail.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-default-text"
-                >
-                  {detail.label}
-                  <ArrowUpRight />
-                </a>
-              ))}
+              <div className="flex flex-wrap items-center gap-2">
+                {caseStudy.launchDetails.map((detail, index) => (
+                  <Fragment key={detail.label}>
+                    {index > 0 && (
+                      <span className="text-border-content">|</span>
+                    )}
+                    <a
+                      href={detail.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-default-text"
+                    >
+                      {detail.label}
+                      <ArrowUpRight />
+                    </a>
+                  </Fragment>
+                ))}
+              </div>
             </div>
           )}
         </div>
       </div>
       {expandedIndex !== null && images.length > 0 && (
         <div
-          className="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-4 bg-black/80 p-6"
+          className="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-4 bg-black/80 px-4 py-6"
           onClick={(event) => {
             event.stopPropagation();
             setExpandedIndex(null);
@@ -263,22 +245,9 @@ export default function CaseStudyModal({
           >
             <CloseIcon size={16} />
           </button>
-          <div className="flex h-[70vh] w-full max-w-5xl items-center justify-center gap-[30px]">
-            {images.length > 1 && (
-              <button
-                type="button"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  goToPrevImage();
-                }}
-                aria-label="Previous image"
-                className="z-10 shrink-0 cursor-pointer text-white"
-              >
-                <ChevronLeftIcon />
-              </button>
-            )}
+          <div className="flex h-[70vh] w-full items-center justify-center">
             <div
-              className="relative h-full min-w-0 flex-1"
+              className="relative h-full w-full"
               onClick={(event) => event.stopPropagation()}
             >
               <Image
@@ -286,22 +255,9 @@ export default function CaseStudyModal({
                 alt=""
                 fill
                 className="object-contain"
-                sizes="90vw"
+                sizes="100vw"
               />
             </div>
-            {images.length > 1 && (
-              <button
-                type="button"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  goToNextImage();
-                }}
-                aria-label="Next image"
-                className="z-10 shrink-0 cursor-pointer text-white"
-              >
-                <ChevronRightIcon />
-              </button>
-            )}
           </div>
           {images.length > 1 && (
             <div

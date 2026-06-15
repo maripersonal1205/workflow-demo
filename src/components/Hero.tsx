@@ -12,11 +12,14 @@ export default function Hero() {
           </p>
         </div>
       </div>
-      <div className="flex flex-wrap items-start gap-16 text-base">
-        <div className="animate-fade-in-up relative flex flex-col items-start gap-0.5 pl-6 text-default-text">
+      <div className="flex flex-wrap items-start gap-x-16 gap-y-8 text-base">
+        <div className="animate-fade-in-up relative flex flex-col items-start gap-0.5 pl-6">
           <span className="animate-grow-vertical absolute top-0 left-0 h-full w-[3px] bg-default-text" />
-          <p>Previously:</p>
-          <p className="font-semibold">Webflow · Optimizely · IBM</p>
+          <p className="text-secondary-text">Previously:</p>
+          <p className="font-semibold text-default-text">
+            Webflow <span className="text-secondary-text">·</span> Optimizely{" "}
+            <span className="text-secondary-text">·</span> IBM
+          </p>
         </div>
         <div className="animate-fade-in-up relative flex flex-col items-start gap-0.5 pl-6 text-secondary-text">
           <span className="animate-fade-in absolute top-0 left-0 h-full w-0.5 bg-border-content" />
