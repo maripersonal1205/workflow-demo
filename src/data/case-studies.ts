@@ -3,6 +3,14 @@ export type LaunchDetail = {
   href: string;
 };
 
+export type CaseStudyImage = {
+  src: string;
+  /** CSS object-position, used to match the crop shown in the Figma design */
+  objectPosition?: string;
+  /** Higher-resolution version of `src`, used in the lightbox instead of `src` */
+  lightboxSrc?: string;
+};
+
 export type CaseStudy = {
   id: string;
   title: string;
@@ -11,8 +19,9 @@ export type CaseStudy = {
   cardImage: string;
   role: string;
   company: string;
-  timeframe: string;
+  status: string;
   impact?: string;
+  images?: CaseStudyImage[];
   body: string[];
   launchDetails?: LaunchDetail[];
 };
@@ -27,8 +36,14 @@ export const caseStudies: CaseStudy[] = [
     cardImage: "/images/case-studies/aeo-analytics.png",
     role: "Design lead",
     company: "Webflow",
-    timeframe: "Dec 2025 - May 2026",
+    status: "Shipped in Spring 2026",
     impact: "$1.3M in revenue",
+    images: [
+      { src: "/images/case-studies/modal/aeo-analytics/1.png", objectPosition: "97% 41%" },
+      { src: "/images/case-studies/modal/aeo-analytics/2.png" },
+      { src: "/images/case-studies/modal/aeo-analytics/3.png", objectPosition: "100% 24%" },
+      { src: "/images/case-studies/modal/aeo-analytics/4.png", objectPosition: "100% 32%" },
+    ],
     body: [
       "As AI-powered search reshapes how people discover brands online, companies began losing organic traffic to answer engines they had no visibility into. A wave of standalone AEO tools emerged to help, but they couldn't connect insights to action on the website itself — leaving Webflow customers managing yet another disconnected platform. Webflow was uniquely positioned to solve this natively: insights and recommendations built directly into the product, tied to the actual site.",
       "I was the lead designer for the analytics and insights workstream — the data foundation the entire AEO product depended on. Working within a tight 6-month timeline across three parallel design workstreams, I used AI-assisted development tools to rapidly build coded prototypes that got in front of customers early and often. This let us gather real behavioral feedback rather than scripted reactions, make faster sequencing decisions under pressure, and hand off to engineering with significantly less back-and-forth.",
@@ -48,8 +63,12 @@ export const caseStudies: CaseStudy[] = [
     cardImage: "/images/case-studies/experiment-ai-copy.png",
     role: "Design lead",
     company: "Webflow",
-    timeframe: "Shipped in summer 2025",
+    status: "Shipped in summer 2025",
     impact: "Product adoption increase by 30%",
+    images: [
+      { src: "/images/case-studies/modal/experiment-ai-copy/1.png", lightboxSrc: "/images/case-studies/modal/experiment-ai-copy/1-full.png" },
+      { src: "/images/case-studies/modal/experiment-ai-copy/2.png", objectPosition: "100% 25%" },
+    ],
     body: [
       "Marketers using Webflow Optimize had the tools to run experiments, but not the time or bandwidth to come up with what to test. Without a way to quickly generate quality ideas, customers weren't running experiments, weren't seeing value, and were at risk of churning. The challenge was designing a solution that helped them move faster without sacrificing the quality of what they were testing.",
       "I led design from discovery through launch, scoping the feature around AI-powered copy suggestions — the most frequently run and highest-impact experiment type. The key design challenge was fitting a marketer's workflow into a product built primarily for designers and developers. The solution wasn't a different interface, but a different interaction: users opt in to AI assistance at the start of experiment setup, land on a draft with pre-populated best-practice prompts already waiting, and receive structured copy variations they can apply in a few clicks — guided enough for speed, without diverging from Webflow's existing AI patterns.",
@@ -71,8 +90,12 @@ export const caseStudies: CaseStudy[] = [
     cardImage: "/images/case-studies/conclude-experiments.png",
     role: "Design lead",
     company: "Webflow",
-    timeframe: "Shipped in summer 2025",
+    status: "Shipped in summer 2025",
     impact: "Product adoption increase by 12%",
+    images: [
+      { src: "/images/case-studies/modal/conclude-experiments/1.png", lightboxSrc: "/images/case-studies/modal/conclude-experiments/1-full.png" },
+      { src: "/images/case-studies/modal/conclude-experiments/2.png", objectPosition: "48% 71%" },
+    ],
     body: [
       "When marketers in Webflow Optimize identified a winning experiment variation, applying those changes to their base site required a slow, manual process — cross-referencing reports, identifying changed elements, and updating them one by one. Beyond the friction, a hidden technical constraint meant that any element tied to an unarchived experiment couldn't be used in new experiments, putting a hard ceiling on how much customers could actually test.",
       "I led design from discovery through launch, and expanded the scope mid-project after surfacing the archiving constraint. The solution combined a streamlined conclude-and-apply flow with automatic archiving as the default — but first required validating a key trade-off: would customers accept losing visual change history in exchange for the ability to run more experiments? Research sessions with existing customers gave a clear answer — every participant chose experimentation flexibility over record-keeping, and most were already managing visual records elsewhere. Copy also required close collaboration with a content designer, as the concepts involved were complex and needed to feel effortless in the UI.",
@@ -94,9 +117,22 @@ export const caseStudies: CaseStudy[] = [
     cardImage: "/images/case-studies/variable-suggestions.png",
     role: "Design lead",
     company: "Optimizely",
-    timeframe: "2024",
+    status: "Shipped in 2024",
+    impact: "Feature adoption increased by 2X",
+    images: [
+      { src: "/images/case-studies/modal/variable-suggestions/1.png", lightboxSrc: "/images/case-studies/modal/variable-suggestions/1-full.png" },
+      { src: "/images/case-studies/modal/variable-suggestions/2.png", objectPosition: "50% 1%" },
+    ],
     body: [
-      "AI-generated experiment variables based on a user's hypothesis.",
+      "Optimizely's Feature Experimentation was purpose-built for engineers, and as the user base expanded to include non-technical users like marketers, that foundation started to create friction. Variables — one of the most powerful features in the product — were going largely unused because the concept was too abstract and the UI assumed technical fluency. Without variables, users couldn't build meaningful experiment variations, which meant fewer experiments, less realized value, and customers at risk of churning.",
+      "I identified AI as the right solution for this specific problem: educational copy could explain what variables were, but it couldn't generate relevant examples for a user's specific experiment. After validating the concept informally in ChatGPT, I designed the feature around Optimizely's global AI assistant side panel — context-aware, so it would automatically prompt users for their experiment hypothesis when they entered the variable creation flow. The AI's response was structured as ready-to-use variables that could be pulled directly into input fields with a click.",
+      "Within a month of launch, variables created doubled, variations increased by 50%, and experiments enabled grew by 33%. The AI-to-input interaction pattern introduced here became a reusable standard adopted across multiple Optimizely products.",
+    ],
+    launchDetails: [
+      {
+        label: "Product feature page",
+        href: "https://support.optimizely.com/hc/en-us/articles/38655200299789-Create-flag-variables",
+      },
     ],
   },
   {
@@ -108,7 +144,7 @@ export const caseStudies: CaseStudy[] = [
     cardImage: "/images/case-studies/feature-flag-dashboard.png",
     role: "Design lead",
     company: "Optimizely",
-    timeframe: "2024",
+    status: "2024",
     body: [
       "A redesigned dashboard that surfaces experiment variations, status, and results at a glance.",
     ],
@@ -122,7 +158,7 @@ export const caseStudies: CaseStudy[] = [
     cardImage: "/images/case-studies/opal-ai-guidelines.png",
     role: "Design lead",
     company: "Optimizely",
-    timeframe: "2024",
+    status: "2024",
     body: [
       "Unified visual and AI patterns across Optimizely's product suite.",
     ],
