@@ -93,7 +93,7 @@ export const caseStudies: CaseStudy[] = [
     status: "Shipped in summer 2025",
     impact: "Product adoption increase by 12%",
     images: [
-      { src: "/images/case-studies/modal/conclude-experiments/1.png", lightboxSrc: "/images/case-studies/modal/conclude-experiments/1-full.png" },
+      { src: "/images/case-studies/modal/conclude-experiments/1.png", lightboxSrc: "/images/case-studies/modal/conclude-experiments/reports.png" },
       { src: "/images/case-studies/modal/conclude-experiments/2.png", objectPosition: "48% 71%" },
     ],
     body: [
@@ -121,7 +121,7 @@ export const caseStudies: CaseStudy[] = [
     impact: "Feature adoption increased by 2X",
     images: [
       { src: "/images/case-studies/modal/variable-suggestions/1.png", lightboxSrc: "/images/case-studies/modal/variable-suggestions/1-full.png" },
-      { src: "/images/case-studies/modal/variable-suggestions/2.png", objectPosition: "50% 1%" },
+      { src: "/images/case-studies/modal/variable-suggestions/2.png", objectPosition: "50% 1%", lightboxSrc: "/images/case-studies/modal/variable-suggestions/2-full.png" },
     ],
     body: [
       "Optimizely's Feature Experimentation was purpose-built for engineers, and as the user base expanded to include non-technical users like marketers, that foundation started to create friction. Variables — one of the most powerful features in the product — were going largely unused because the concept was too abstract and the UI assumed technical fluency. Without variables, users couldn't build meaningful experiment variations, which meant fewer experiments, less realized value, and customers at risk of churning.",
