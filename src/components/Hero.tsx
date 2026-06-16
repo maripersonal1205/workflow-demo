@@ -1,13 +1,12 @@
 export default function Hero() {
   return (
     <section className="flex flex-col gap-10">
-      <div className="flex items-start gap-2 font-mono text-sm text-secondary-text">
-        <div className="flex items-center gap-2">
-          <span className="size-2 shrink-0 rounded-full bg-signal" />
-          <span>Available for work</span>
-        </div>
-        <span className="text-base text-border-content">|</span>
-        <span>Based in LA</span>
+      <div className="flex items-center gap-2 font-mono text-sm lowercase text-secondary-text">
+        <span className="size-2 shrink-0 rounded-full bg-signal" />
+        <span>
+          based in LA <span className="text-border-content">|</span> open for
+          new roles
+        </span>
       </div>
       <div className="flex max-w-[755px] flex-col gap-4 font-display text-default-text">
         <h1 className="text-[32px] font-semibold leading-[1.3] sm:text-[40px]">

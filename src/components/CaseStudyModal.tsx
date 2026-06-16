@@ -139,7 +139,7 @@ export default function CaseStudyModal({
           </div>
           <div className="h-px w-full bg-border" />
         </div>
-        <div className="flex min-h-0 flex-col gap-6 overflow-y-auto px-4 pt-6 pb-6 md:px-8 md:pb-0">
+        <div className="flex min-h-0 flex-col gap-6 overflow-y-auto px-4 pt-6 pb-12 md:px-8 md:pb-0">
           <div className="flex w-full flex-col gap-2 text-sm md:flex-row">
             <div className="flex flex-col gap-2 md:w-[220px] md:shrink-0 md:gap-1">
               <div className="flex items-center gap-1">
