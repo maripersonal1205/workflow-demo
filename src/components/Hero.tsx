@@ -1,31 +1,29 @@
 export default function Hero() {
   return (
     <section className="flex flex-col gap-10">
-      <div className="flex flex-col items-start gap-6">
-        <div className="flex w-full max-w-[755px] flex-col font-serif text-[32px] leading-[1.1] text-default-text sm:text-[40px]">
-          <p className="w-full font-normal">
-            I learn problems until they feel like my own.
-          </p>
-          <p className="w-full font-light">
-            Now that ideas can become real in hours, I am uncovering user
-            insights and constraints I couldn&apos;t reach before.
-          </p>
+      <div className="flex items-start gap-2 font-mono text-sm text-secondary-text">
+        <div className="flex items-center gap-2">
+          <span className="size-2 shrink-0 rounded-full bg-signal" />
+          <span>Available for work</span>
         </div>
+        <span className="text-base text-border-content">|</span>
+        <span>Based in LA</span>
       </div>
-      <div className="flex flex-wrap items-start gap-x-16 gap-y-8 text-base">
-        <div className="animate-fade-in-up relative flex flex-col items-start gap-0.5 pl-6">
-          <span className="animate-grow-vertical absolute top-0 left-0 h-full w-[3px] bg-default-text" />
-          <p className="text-secondary-text">Previously:</p>
-          <p className="font-semibold text-default-text">
-            Webflow <span className="text-secondary-text">·</span> Optimizely{" "}
-            <span className="text-secondary-text">·</span> IBM
-          </p>
-        </div>
-        <div className="animate-fade-in-up relative flex flex-col items-start gap-0.5 pl-6 text-secondary-text">
-          <span className="animate-fade-in absolute top-0 left-0 h-full w-0.5 bg-border-content" />
-          <p>Focus areas:</p>
-          <p>Enterprise SaaS · Analytics · Experimentation · AI</p>
-        </div>
+      <div className="flex max-w-[755px] flex-col gap-4 font-display text-default-text">
+        <h1 className="text-[32px] font-semibold leading-[1.3] sm:text-[40px]">
+          Hi! I&apos;m Mari.
+        </h1>
+        <p className="text-[20px] font-light leading-[1.4] sm:text-[24px]">
+          I am a product designer who solved complex enterprise problems at
+          companies like <strong className="font-bold">Webflow</strong>,{" "}
+          <strong className="font-bold">Optimizely</strong>, and{" "}
+          <strong className="font-bold">IBM</strong>.
+        </p>
+        <p className="text-[20px] font-light leading-[1.4] sm:text-[24px]">
+          I enjoy learning new problem spaces deeply until they feel like my
+          own. Lately, I&apos;ve been using AI to bring ideas to life faster and
+          uncover even deeper insights.
+        </p>
       </div>
     </section>
   );

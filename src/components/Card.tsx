@@ -24,12 +24,12 @@ export default function Card({ caseStudy, onClick }: CardProps) {
       </div>
       <div className="flex w-full flex-col gap-4 border-t border-border bg-background p-4">
         <div className="flex flex-col gap-0.5 text-default-text">
-          <p className="font-serif text-lg font-semibold">
-            {caseStudy.title}
-          </p>
+          <p className="text-base font-semibold">{caseStudy.title}</p>
           <p className="text-base">{caseStudy.description}</p>
         </div>
-        <p className="text-base text-secondary-text">{caseStudy.tag}</p>
+        <p className="font-mono text-sm lowercase text-secondary-text">
+          {caseStudy.tag}
+        </p>
       </div>
     </button>
   );

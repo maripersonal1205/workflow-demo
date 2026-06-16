@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const EMAIL = "mhirano1205@gmail.com";
@@ -126,10 +127,17 @@ export default function Header() {
       <div className="mx-auto flex w-full max-w-[1000px] flex-row items-center justify-between pl-4 pr-6 text-base md:px-6">
         <a
           href="https://marihirano.com"
-          className="flex flex-col gap-0.5 font-serif leading-none text-default-text md:flex-row md:flex-wrap md:items-center md:gap-2 md:leading-normal"
+          aria-label="Mari Hirano — home"
+          className="shrink-0"
         >
-          <p className="whitespace-nowrap font-medium">Mari Hirano</p>
-          <p className="whitespace-nowrap font-normal">Senior Product Designer</p>
+          <Image
+            src="/images/logo.png"
+            alt="Mari Hirano"
+            width={84}
+            height={33}
+            priority
+            className="h-[33px] w-auto"
+          />
         </a>
         <button
           type="button"
@@ -150,7 +158,7 @@ export default function Header() {
             <line x1="1" y1="15" x2="23" y2="15" stroke="currentColor" strokeWidth="1.5" />
           </svg>
         </button>
-        <nav className="hidden flex-wrap items-center gap-4 whitespace-nowrap font-serif font-normal text-default-text md:flex">
+        <nav className="hidden flex-wrap items-center gap-4 whitespace-nowrap font-mono text-sm lowercase font-normal text-default-text md:flex">
           {NAV_LINKS.map((link) => (
             <a key={link.label} href={link.href} className="group relative">
               {link.label}
@@ -173,7 +181,7 @@ export default function Header() {
           <button
             type="button"
             onClick={handleEmailClick}
-            className="group relative cursor-pointer text-secondary-text"
+            className="group relative cursor-pointer lowercase text-secondary-text"
           >
             Email
             <span className={underlineClass} />
@@ -196,18 +204,15 @@ export default function Header() {
       )}
       {menuMounted && (
         <div
-          className={`fixed inset-0 z-40 flex flex-col gap-9 border-b border-border bg-background pt-4 pb-6 shadow-card transition-transform duration-300 ease-out md:hidden ${
+          className={`fixed inset-0 z-40 flex flex-col gap-9 border-b border-border bg-white/90 pt-4 pb-6 shadow-card backdrop-blur-[5px] transition-transform duration-300 ease-out md:hidden ${
             menuShown ? "translate-x-0" : "translate-x-full"
           }`}
         >
           <div className="flex items-center justify-between pl-4 pr-6">
             <span
               aria-hidden="true"
-              className="invisible flex flex-col gap-0.5 font-serif text-base leading-none"
-            >
-              <span className="font-medium">Mari Hirano</span>
-              <span className="font-normal">Senior Product Designer</span>
-            </span>
+              className="invisible block h-[33px] w-[84px]"
+            />
             <button
               type="button"
               onClick={closeMenu}
@@ -226,7 +231,7 @@ export default function Header() {
               </svg>
             </button>
           </div>
-          <nav className="flex w-full flex-col items-center gap-8 px-4 font-serif text-[24px] font-normal">
+          <nav className="flex w-full flex-col items-center gap-8 px-4 font-mono text-[24px] lowercase font-normal">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
@@ -237,7 +242,6 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <span className="h-px w-full bg-border" />
             {SOCIAL_LINKS.map((link) => (
               <a
                 key={link.label}
@@ -256,7 +260,7 @@ export default function Header() {
                 handleEmailClick(e);
                 closeMenu();
               }}
-              className="text-secondary-text"
+              className="lowercase text-secondary-text"
             >
               Email
             </button>
