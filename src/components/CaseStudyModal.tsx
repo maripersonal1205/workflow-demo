@@ -129,7 +129,7 @@ export default function CaseStudyModal({
               <CloseIcon />
             </button>
             <div className="flex w-full flex-col items-start gap-0.5">
-              <p className="font-serif text-lg font-semibold leading-[1.5] text-default-text">
+              <p className="text-base font-semibold leading-[1.5] text-default-text">
                 {caseStudy.title}
               </p>
               <p className="text-sm leading-[1.5] text-secondary-text">
