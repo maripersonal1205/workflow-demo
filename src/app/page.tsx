@@ -13,6 +13,7 @@ export default function Home() {
         <Hero />
         <div className="h-px w-full bg-border" />
         <CaseStudiesSection />
+        <div className="h-px w-full bg-border" />
         <div className="flex flex-col gap-6">
           <WorkExperience />
           <Education />
