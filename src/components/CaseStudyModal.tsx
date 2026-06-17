@@ -297,10 +297,7 @@ export default function CaseStudyModal({
             <CloseIcon size={16} />
           </button>
           <div className="flex h-[70vh] w-full items-center justify-center">
-            <div
-              className="relative h-full w-full"
-              onClick={(event) => event.stopPropagation()}
-            >
+            <div className="pointer-events-none relative h-full w-full">
               <Image
                 src={images[expandedIndex].lightboxSrc ?? images[expandedIndex].src}
                 alt=""
