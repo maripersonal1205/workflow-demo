@@ -124,7 +124,7 @@ export default function CaseStudyModal({
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="cursor-pointer text-secondary-text"
+              className="-m-2 flex size-11 cursor-pointer items-center justify-center text-secondary-text"
             >
               <CloseIcon />
             </button>
@@ -241,7 +241,7 @@ export default function CaseStudyModal({
               setExpandedIndex(null);
             }}
             aria-label="Close"
-            className="absolute top-6 right-6 cursor-pointer text-white"
+            className="absolute top-3 right-3 flex size-11 cursor-pointer items-center justify-center text-white"
           >
             <CloseIcon size={16} />
           </button>
