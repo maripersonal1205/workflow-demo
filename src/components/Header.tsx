@@ -5,12 +5,16 @@ import { useEffect, useRef, useState } from "react";
 
 const EMAIL = "mhirano1205@gmail.com";
 
+// PDF lives in /public — drop the resume file here to wire it up.
+const RESUME_PDF = "/mari-hirano-resume.pdf";
+
 const NAV_LINKS = [
   { label: "Work", href: "#work" },
-  { label: "Resume", href: "#work-experience" },
+  { label: "Experience", href: "#work-experience" },
 ];
 
 const SOCIAL_LINKS = [
+  { label: "Resume", href: RESUME_PDF },
   { label: "Linkedin", href: "https://www.linkedin.com/in/marihiranouw/" },
 ];
 
@@ -165,7 +169,7 @@ export default function Header() {
               <span className={underlineClass} />
             </a>
           ))}
-          <span className="text-[18px] text-border-content">|</span>
+          <span className="text-border-content">/</span>
           {SOCIAL_LINKS.map((link) => (
             <a
               key={link.label}
