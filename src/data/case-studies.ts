@@ -9,6 +9,14 @@ export type CaseStudyImage = {
   objectPosition?: string;
   /** Higher-resolution version of `src`, used in the lightbox instead of `src` */
   lightboxSrc?: string;
+  /** Optional caption shown above the image (e.g. "Before" / "After") */
+  label?: string;
+};
+
+export type CaseStudyImageGroup = {
+  /** Caption shown above the row of images */
+  label: string;
+  images: CaseStudyImage[];
 };
 
 export type CaseStudy = {
@@ -22,7 +30,11 @@ export type CaseStudy = {
   status: string;
   impact?: string;
   images?: CaseStudyImage[];
+  /** Labeled groups of images shown on a dark panel (alternative to `images`) */
+  imageGroups?: CaseStudyImageGroup[];
   body: string[];
+  /** Heading shown before the launch links. Defaults to "To learn more, visit:" */
+  launchLabel?: string;
   launchDetails?: LaunchDetail[];
 };
 
@@ -144,9 +156,31 @@ export const caseStudies: CaseStudy[] = [
     cardImage: "/images/case-studies/feature-flag-dashboard.png",
     role: "Design lead",
     company: "Optimizely",
-    status: "2024",
+    status: "Shipped in 2024",
+    impact: "Pattern adoption beyond the product",
+    images: [
+      {
+        src: "/images/case-studies/modal/feature-flag-dashboard/before.png",
+        label: "Before",
+        objectPosition: "0% 0%",
+      },
+      {
+        src: "/images/case-studies/modal/feature-flag-dashboard/after.png",
+        label: "After",
+        objectPosition: "0% 0%",
+      },
+    ],
     body: [
-      "A redesigned dashboard that surfaces experiment variations, status, and results at a glance.",
+      "Optimizely's Feature Experimentation was originally built for engineers managing feature flags, but as the user base grew to include non-technical users like marketers running experiments across platforms, the existing dashboard couldn't keep up. The table surfaced only flag name, environment, and key — any detail on the experiments or variations living inside a flag required digging through multiple pages. For marketers building comparison reports, this meant manually screenshotting data from separate pages and pasting it together, since there was no way to view experiments side by side.",
+      "Through several rounds of iteration, I redesigned the table to be expandable, nesting experiment-level detail directly within each flag row so users could compare experiments without leaving the page. I also introduced custom filters and configurable columns — capabilities the original table lacked — letting different personas tailor the view to their own workflow.",
+      "This wasn't a problem unique to Feature Experimentation. Other teams across Optimizely had been running into the same limitation without a shared solution to point to. The expandable, customizable table pattern became that solution — adopted as a reusable system well beyond the scope of this one product.",
+    ],
+    launchLabel: "See implementation:",
+    launchDetails: [
+      {
+        label: "Product page",
+        href: "https://www.optimizely.com/products/feature-management/",
+      },
     ],
   },
   {
@@ -158,9 +192,28 @@ export const caseStudies: CaseStudy[] = [
     cardImage: "/images/case-studies/opal-ai-guidelines.png",
     role: "Design lead",
     company: "Optimizely",
-    status: "2024",
+    status: "Shipped in 2024",
+    impact: "Reusable design language for Opal AI",
+    imageGroups: [
+      {
+        label: "AI guidelines",
+        images: [
+          { src: "/images/case-studies/modal/opal-ai-guidelines/ai-guidelines-1.png", objectPosition: "0% 0%" },
+          { src: "/images/case-studies/modal/opal-ai-guidelines/ai-guidelines-2.png", objectPosition: "0% 0%" },
+        ],
+      },
+      {
+        label: "Opal visual language & components",
+        images: [
+          { src: "/images/case-studies/modal/opal-ai-guidelines/visual-language-1.png", objectPosition: "0% 0%" },
+          { src: "/images/case-studies/modal/opal-ai-guidelines/visual-language-2.png", objectPosition: "0% 0%" },
+        ],
+      },
+    ],
     body: [
-      "Unified visual and AI patterns across Optimizely's product suite.",
+      "As Optimizely scaled its AI assistant Opal across products, the vision was a consistent AI experience regardless of which product a user was in. In practice, each product pillar was building AI features independently, with no shared visual language, components, or guidelines to work from. I felt this firsthand while building several AI features myself, constantly piecing together direction from scattered sources — and realized the lack of a shared foundation was actively working against Opal's vision.",
+      "Rather than wait for this to be solved top-down, I formed a guild with the designers leading AI work across other product pillars, along with a representative from the design systems team to ensure anything we created stayed grounded in the company's existing system. Over two months of collaborative iteration and stakeholder socialization, we developed a shared framework: core principles for AI usage, interaction patterns, and a defined visual language and component set for Opal.",
+      "The guidelines were published and became the foundation the team used to think about AI design across Opal's product surface. That foundation still shows up in Opal today — the visual language and interaction patterns we established have held up as the product has evolved.",
     ],
   },
 ];

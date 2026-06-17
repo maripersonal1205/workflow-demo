@@ -2,7 +2,7 @@
 
 import { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
-import type { CaseStudy } from "@/data/case-studies";
+import type { CaseStudy, CaseStudyImage } from "@/data/case-studies";
 
 type CaseStudyModalProps = {
   caseStudy: CaseStudy;
@@ -82,7 +82,9 @@ export default function CaseStudyModal({
   onClose,
 }: CaseStudyModalProps) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const images = caseStudy.images ?? [];
+  const imageGroups = caseStudy.imageGroups ?? [];
+  const images =
+    caseStudy.images ?? imageGroups.flatMap((group) => group.images);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -108,6 +110,28 @@ export default function CaseStudyModal({
       document.body.style.overflow = "";
     };
   }, [onClose, expandedIndex, images.length]);
+
+  const renderZoomButton = (image: CaseStudyImage, index: number) => (
+    <button
+      type="button"
+      onClick={() => setExpandedIndex(index)}
+      aria-label="Expand image"
+      className="group relative w-full flex-1 cursor-zoom-in overflow-hidden rounded"
+    >
+      <Image
+        src={image.src}
+        alt=""
+        fill
+        className="object-cover"
+        style={{ objectPosition: image.objectPosition }}
+      />
+      <span className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/30">
+        <span className="text-white opacity-0 transition-opacity group-hover:opacity-100">
+          <ZoomIcon />
+        </span>
+      </span>
+    </button>
+  );
 
   return (
     <div
@@ -164,34 +188,59 @@ export default function CaseStudyModal({
               )}
             </div>
           </div>
-          {images.length > 0 && (
+          {imageGroups.length > 0 && (
+            <div className="flex w-full flex-col gap-3 rounded bg-[#2d303d] p-2">
+              {(() => {
+                let cursor = 0;
+                return imageGroups.map((group, groupIndex) => (
+                  <div key={groupIndex} className="flex w-full flex-col gap-1.5">
+                    <p className="text-[11px] leading-[1.34] text-white">
+                      {group.label}
+                    </p>
+                    <div className="flex h-40 w-full gap-3">
+                      {group.images.map((image) => {
+                        const index = cursor++;
+                        return (
+                          <div key={image.src} className="flex h-full flex-1">
+                            {renderZoomButton(image, index)}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ));
+              })()}
+            </div>
+          )}
+          {imageGroups.length === 0 && images.length > 0 && (
             <div className="flex w-full flex-col gap-2">
-              {chunkPairs(images.map((image, index) => ({ ...image, index }))).map((row, rowIndex) => (
-                <div key={rowIndex} className="flex h-40 w-full gap-2">
-                  {row.map((image) => (
-                    <button
-                      key={image.src}
-                      type="button"
-                      onClick={() => setExpandedIndex(image.index)}
-                      aria-label="Expand image"
-                      className="group relative h-full flex-1 cursor-zoom-in overflow-hidden rounded"
-                    >
-                      <Image
-                        src={image.src}
-                        alt=""
-                        fill
-                        className="object-cover"
-                        style={{ objectPosition: image.objectPosition }}
-                      />
-                      <span className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/30">
-                        <span className="text-white opacity-0 transition-opacity group-hover:opacity-100">
-                          <ZoomIcon />
-                        </span>
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              ))}
+              {chunkPairs(images.map((image, index) => ({ ...image, index }))).map((row, rowIndex) => {
+                const rowHasLabel = row.some((image) => image.label);
+                return (
+                  <div
+                    key={rowIndex}
+                    className={`flex w-full gap-2 ${rowHasLabel ? "h-48" : "h-40"}`}
+                  >
+                    {row.map((image) =>
+                      image.label ? (
+                        <div
+                          key={image.src}
+                          className="flex h-full flex-1 flex-col gap-1 rounded bg-[#e1e5f5] p-2"
+                        >
+                          <span className="text-xs font-medium text-default-text">
+                            {image.label}
+                          </span>
+                          {renderZoomButton(image, image.index)}
+                        </div>
+                      ) : (
+                        <div key={image.src} className="flex h-full flex-1">
+                          {renderZoomButton(image, image.index)}
+                        </div>
+                      ),
+                    )}
+                  </div>
+                );
+              })}
             </div>
           )}
           <div className="flex flex-col gap-4 text-base text-default-text">
@@ -203,7 +252,9 @@ export default function CaseStudyModal({
           </div>
           {caseStudy.launchDetails && caseStudy.launchDetails.length > 0 && (
             <div className="flex w-full flex-col gap-2 text-sm md:flex-row md:flex-wrap md:items-center">
-              <p className="font-bold text-default-text">To learn more, visit:</p>
+              <p className="font-bold text-default-text">
+                {caseStudy.launchLabel ?? "To learn more, visit:"}
+              </p>
               <div className="flex flex-wrap items-center gap-2">
                 {caseStudy.launchDetails.map((detail, index) => (
                   <Fragment key={detail.label}>
