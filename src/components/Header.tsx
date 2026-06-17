@@ -231,7 +231,7 @@ export default function Header() {
               </svg>
             </button>
           </div>
-          <nav className="flex w-full flex-col items-center gap-8 px-4 font-mono text-[24px] lowercase font-normal">
+          <nav className="flex w-full flex-col items-center gap-8 px-4 font-mono text-[14px] lowercase font-normal">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
@@ -254,16 +254,13 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <button
-              type="button"
-              onClick={(e) => {
-                handleEmailClick(e);
-                closeMenu();
-              }}
+            <a
+              href={`mailto:${EMAIL}`}
+              onClick={closeMenu}
               className="lowercase text-secondary-text"
             >
               Email
-            </button>
+            </a>
           </nav>
         </div>
       )}
