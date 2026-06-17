@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 
 const EMAIL = "mhirano1205@gmail.com";
 
-// PDF lives in /public — drop the resume file here to wire it up.
-const RESUME_PDF = "/mari-hirano-resume.pdf";
+const RESUME_URL =
+  "https://drive.google.com/file/d/1cnokCjjfC0Z4TZmw3Of63R1eOf_sLCaV/view?usp=sharing";
 
 const NAV_LINKS = [
   { label: "Work", href: "#work" },
@@ -14,7 +14,7 @@ const NAV_LINKS = [
 ];
 
 const SOCIAL_LINKS = [
-  { label: "Resume", href: RESUME_PDF },
+  { label: "Resume", href: RESUME_URL },
   { label: "Linkedin", href: "https://www.linkedin.com/in/marihiranouw/" },
 ];
 
