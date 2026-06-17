@@ -6,7 +6,7 @@ export default function Hero() {
         <span className="text-border-content">|</span> based in LA
       </p>
       <div className="flex max-w-[755px] flex-col gap-4 font-display text-default-text">
-        <h1 className="text-[32px] font-semibold leading-[1.3] sm:text-[40px]">
+        <h1 className="text-[32px] font-bold leading-[1.3] sm:text-[40px]">
           Hi! I&apos;m Mari.
         </h1>
         <p className="text-[20px] font-light leading-[1.4] sm:text-[24px]">
