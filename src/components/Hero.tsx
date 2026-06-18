@@ -10,15 +10,15 @@ export default function Hero() {
           Hi! I&apos;m Mari.
         </h1>
         <p className="text-[20px] font-light leading-[1.4] sm:text-[24px]">
-          I am a product designer who solved complex enterprise problems at
-          companies like <strong className="font-bold">Webflow</strong>,{" "}
-          <strong className="font-bold">Optimizely</strong>, and{" "}
-          <strong className="font-bold">IBM</strong>.
-        </p>
-        <p className="text-[20px] font-light leading-[1.4] sm:text-[24px]">
           I enjoy learning new problem spaces deeply until they feel like my
           own. Lately, I&apos;ve been using AI to bring ideas to life faster and
-          uncover even deeper insights.
+          uncover insights we couldn&apos;t reach before.
+        </p>
+        <p className="text-[20px] font-light leading-[1.4] sm:text-[24px]">
+          Previously at <strong className="font-semibold">Webflow</strong>,{" "}
+          <strong className="font-semibold">Optimizely</strong>, and{" "}
+          <strong className="font-semibold">IBM</strong>, I solved complex
+          challenges for enterprise customers.
         </p>
       </div>
     </section>
