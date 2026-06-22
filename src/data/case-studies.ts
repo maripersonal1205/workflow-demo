@@ -126,7 +126,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       "AI-generated experiment variables based on a user's hypothesis.",
     tag: "Optimizely - 2024",
-    cardImage: "/images/case-studies/variable-suggestions.png",
+    cardImage: "/images/case-studies/variable-suggestions-2.png",
     role: "Design lead",
     company: "Optimizely",
     status: "Shipped in 2024",
