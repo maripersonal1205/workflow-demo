@@ -138,6 +138,7 @@ export const caseStudies: CaseStudy[] = [
     tag: "Optimizely - 2024",
     cardImage: "/images/case-studies/variable-suggestions-2.png",
     coverImage: "/images/case-studies/placeholder/variable-suggestions.png",
+    coverVideo: "/case-videos/variables-suggestions.mp4",
     role: "Design lead",
     company: "Optimizely",
     status: "Shipped in 2024",
