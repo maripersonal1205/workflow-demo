@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { CaseStudy } from "@/data/case-studies";
 
@@ -56,6 +56,22 @@ function ArrowUpRight() {
   );
 }
 
+function PauseIcon() {
+  return (
+    <svg width="7" height="10" viewBox="13 8 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 9V16M14 9V16" stroke="#D2D2D2" strokeLinecap="round" strokeWidth="1" />
+    </svg>
+  );
+}
+
+function PlayIcon() {
+  return (
+    <svg width="10" height="10" viewBox="12 8 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13 15V9L19 12L13 15Z" fill="none" stroke="#D2D2D2" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function ArrowCircleIcon({ direction }: { direction: "left" | "right" }) {
   return (
     <svg
@@ -86,6 +102,8 @@ export default function CaseStudyModal({
   const [isMounted, setIsMounted] = useState(false);
   const [displayedCaseStudy, setDisplayedCaseStudy] = useState(caseStudy);
   const [isContentVisible, setIsContentVisible] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -117,10 +135,23 @@ export default function CaseStudyModal({
     setIsContentVisible(false);
     const timeout = setTimeout(() => {
       setDisplayedCaseStudy(caseStudy);
+      setIsPlaying(true);
       setIsContentVisible(true);
     }, 250);
     return () => clearTimeout(timeout);
   }, [caseStudy, displayedCaseStudy.id]);
+
+  function togglePlayPause() {
+    const video = videoRef.current;
+    if (!video) return;
+    if (isPlaying) {
+      video.pause();
+      setIsPlaying(false);
+    } else {
+      video.play();
+      setIsPlaying(true);
+    }
+  }
 
   return (
     <div
@@ -150,7 +181,7 @@ export default function CaseStudyModal({
         )}
       </div>
       <div
-        className="scrollbar-hide relative flex h-full w-full flex-col overflow-y-auto overscroll-none will-change-scroll bg-background md:h-auto md:max-h-[90vh] md:w-[640px] md:rounded-lg md:bg-[rgba(255,255,255,0.9)] md:shadow-card md:backdrop-blur-[50px]"
+        className="scrollbar-hide relative flex h-full w-full flex-col overflow-y-auto overscroll-none will-change-scroll bg-background md:h-auto md:max-h-[90vh] md:w-[720px] md:rounded-lg md:bg-[rgba(255,255,255,0.9)] md:shadow-card md:backdrop-blur-[50px]"
         onClick={(event) => event.stopPropagation()}
       >
         {/* Zero-height sticky bar keeps the close button pinned while scrolling */}
@@ -173,14 +204,25 @@ export default function CaseStudyModal({
           {/* Full-width cover media (placeholder image until the looping video is ready) */}
           <div className="relative h-[280px] w-full shrink-0 md:h-[376px]">
             {displayedCaseStudy.coverVideo ? (
-              <video
-                className="size-full object-cover"
-                src={displayedCaseStudy.coverVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
+              <>
+                <video
+                  ref={videoRef}
+                  className="size-full object-cover"
+                  src={displayedCaseStudy.coverVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+                <button
+                  type="button"
+                  onClick={togglePlayPause}
+                  aria-label={isPlaying ? "Pause video" : "Play video"}
+                  className="absolute bottom-3 right-3 flex size-8 cursor-pointer items-center justify-center rounded-full bg-[rgba(34,34,34,0.45)] backdrop-blur-sm outline-none [-webkit-tap-highlight-color:transparent]"
+                >
+                  {isPlaying ? <PauseIcon /> : <PlayIcon />}
+                </button>
+              </>
             ) : (
               <Image
                 src={displayedCaseStudy.coverImage}
