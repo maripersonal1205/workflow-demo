@@ -80,6 +80,7 @@ export const caseStudies: CaseStudy[] = [
     tag: "Webflow - 2025",
     cardImage: "/images/case-studies/experiment-ai-copy.png",
     coverImage: "/images/case-studies/placeholder/experiment-ai-copy.png",
+    coverVideo: "/case-videos/experiment-ai-copy.mp4",
     role: "Design lead",
     company: "Webflow",
     status: "Shipped in summer 2025",
