@@ -7,7 +7,14 @@ import CaseStudyModal from "./CaseStudyModal";
 
 export default function CaseStudiesSection() {
   const [activeId, setActiveId] = useState<string | null>(null);
-  const activeCaseStudy = caseStudies.find((cs) => cs.id === activeId);
+  const activeIndex = caseStudies.findIndex((cs) => cs.id === activeId);
+  const activeCaseStudy = caseStudies[activeIndex];
+  const previousCaseStudy =
+    activeIndex > 0 ? caseStudies[activeIndex - 1] : undefined;
+  const nextCaseStudy =
+    activeIndex >= 0 && activeIndex < caseStudies.length - 1
+      ? caseStudies[activeIndex + 1]
+      : undefined;
 
   return (
     <section id="work" className="flex scroll-mt-25 flex-col gap-6">
@@ -27,6 +34,9 @@ export default function CaseStudiesSection() {
         <CaseStudyModal
           caseStudy={activeCaseStudy}
           onClose={() => setActiveId(null)}
+          previousCaseStudy={previousCaseStudy}
+          nextCaseStudy={nextCaseStudy}
+          onNavigate={(caseStudy) => setActiveId(caseStudy.id)}
         />
       )}
     </section>

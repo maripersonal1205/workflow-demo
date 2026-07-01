@@ -32,3 +32,11 @@ body {
   background: var(--color-background);
   color: var(--color-default-text);
 }
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

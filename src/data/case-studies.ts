@@ -25,6 +25,10 @@ export type CaseStudy = {
   description: string;
   tag: string;
   cardImage: string;
+  /** Full-width media shown at the top of the modal. Placeholder until video is ready. */
+  coverImage: string;
+  /** Optional looping video shown at the top of the modal instead of `coverImage`. */
+  coverVideo?: string;
   role: string;
   company: string;
   status: string;
@@ -46,6 +50,7 @@ export const caseStudies: CaseStudy[] = [
       "Analytics that help marketers stay visible as search shifts from traditional engines to AI.",
     tag: "Webflow - 2026",
     cardImage: "/images/case-studies/aeo-analytics.png",
+    coverImage: "/images/case-studies/placeholder/aeo-analytics.png",
     role: "Design lead",
     company: "Webflow",
     status: "Shipped in Spring 2026",
@@ -73,6 +78,7 @@ export const caseStudies: CaseStudy[] = [
       "An AI assistant that generates copy variations for A/B tests based on best practices.",
     tag: "Webflow - 2025",
     cardImage: "/images/case-studies/experiment-ai-copy.png",
+    coverImage: "/images/case-studies/placeholder/experiment-ai-copy.png",
     role: "Design lead",
     company: "Webflow",
     status: "Shipped in summer 2025",
@@ -100,6 +106,7 @@ export const caseStudies: CaseStudy[] = [
       "A workflow that seamlessly applies experiment variations to the base.",
     tag: "Webflow - 2025",
     cardImage: "/images/case-studies/conclude-experiments.png",
+    coverImage: "/images/case-studies/placeholder/conclude-experiments.png",
     role: "Design lead",
     company: "Webflow",
     status: "Shipped in summer 2025",
@@ -127,6 +134,7 @@ export const caseStudies: CaseStudy[] = [
       "AI-generated experiment variables based on a user's hypothesis.",
     tag: "Optimizely - 2024",
     cardImage: "/images/case-studies/variable-suggestions-2.png",
+    coverImage: "/images/case-studies/placeholder/variable-suggestions.png",
     role: "Design lead",
     company: "Optimizely",
     status: "Shipped in 2024",
@@ -154,6 +162,7 @@ export const caseStudies: CaseStudy[] = [
       "A redesigned dashboard that surfaces experiment variations, status, and results at a glance.",
     tag: "Optimizely - 2024",
     cardImage: "/images/case-studies/feature-flag-dashboard.png",
+    coverImage: "/images/case-studies/placeholder/feature-flag-dashboard.png",
     role: "Design lead",
     company: "Optimizely",
     status: "Shipped in 2024",
@@ -190,6 +199,7 @@ export const caseStudies: CaseStudy[] = [
       "Unified visual and AI patterns across Optimizely's product suite.",
     tag: "Optimizely - 2024",
     cardImage: "/images/case-studies/opal-ai-guidelines.png",
+    coverImage: "/images/case-studies/placeholder/opal-ai-guidelines.png",
     role: "Design lead",
     company: "Optimizely",
     status: "Shipped in 2024",

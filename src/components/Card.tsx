@@ -6,7 +6,29 @@ type CardProps = {
   onClick: () => void;
 };
 
+function ArrowUpRight() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 12L12 4M12 4H6M12 4V10"
+        stroke="white"
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default function Card({ caseStudy, onClick }: CardProps) {
+  const hoverTag = caseStudy.tag.replace(" - ", " / ");
+
   return (
     <button
       type="button"
@@ -21,15 +43,18 @@ export default function Card({ caseStudy, onClick }: CardProps) {
           className="object-cover transition-transform duration-300 ease-out group-hover:scale-110"
           sizes="(min-width: 768px) 50vw, 100vw"
         />
-      </div>
-      <div className="flex w-full flex-col gap-4 border-t border-border bg-background p-4">
-        <div className="flex flex-col gap-0.5 text-default-text">
-          <p className="text-base font-semibold">{caseStudy.title}</p>
-          <p className="text-base">{caseStudy.description}</p>
+        <div className="absolute inset-0 z-10 flex items-start justify-between p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <span className="flex h-8 items-center rounded-[4px] bg-[rgba(49,49,49,0.75)] px-2.5 font-mono text-xs lowercase leading-[1.5] text-white backdrop-blur-[2px]">
+            {hoverTag}
+          </span>
+          <span className="flex size-8 items-center justify-center rounded-[4px] bg-[rgba(87,87,87,0.8)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.1)] backdrop-blur-[2px]">
+            <ArrowUpRight />
+          </span>
         </div>
-        <p className="font-mono text-sm lowercase text-secondary-text">
-          {caseStudy.tag}
-        </p>
+      </div>
+      <div className="flex w-full flex-col gap-0.5 border-t border-border bg-background p-4 text-default-text">
+        <p className="text-base font-semibold">{caseStudy.title}</p>
+        <p className="text-base">{caseStudy.description}</p>
       </div>
     </button>
   );
