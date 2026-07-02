@@ -49,7 +49,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       "Analytics that help marketers stay visible as search shifts from traditional engines to AI.",
     tag: "Webflow - 2026",
-    cardImage: "/images/case-studies/aeo-analytics.png",
+    cardImage: "/images/case-studies/aeo-analytics-new.png",
     coverImage: "/images/case-studies/placeholder/aeo-analytics.png",
     coverVideo: "/case-videos/AEO.mp4",
     role: "Design lead",
@@ -78,7 +78,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       "An AI assistant that generates copy variations for A/B tests based on best practices.",
     tag: "Webflow - 2025",
-    cardImage: "/images/case-studies/experiment-ai-copy.png",
+    cardImage: "/images/case-studies/experiment-ai-copy-new.png",
     coverImage: "/images/case-studies/placeholder/experiment-ai-copy.png",
     coverVideo: "/case-videos/experiment-ai-copy.mp4",
     role: "Design lead",
@@ -107,7 +107,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       "A workflow that seamlessly applies experiment variations to the base.",
     tag: "Webflow - 2025",
-    cardImage: "/images/case-studies/conclude-experiments.png",
+    cardImage: "/images/case-studies/conclude-experiments-new.png",
     coverImage: "/images/case-studies/placeholder/conclude-experiments.png",
     coverVideo: "/case-videos/conclude-experiment.mp4",
     role: "Design lead",
@@ -136,7 +136,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       "AI-generated experiment variables based on a user's hypothesis.",
     tag: "Optimizely - 2024",
-    cardImage: "/images/case-studies/variable-suggestions-2.png",
+    cardImage: "/images/case-studies/variable-suggestions-new.png",
     coverImage: "/images/case-studies/placeholder/variable-suggestions.png",
     coverVideo: "/case-videos/variables-suggestions.mp4",
     role: "Design lead",
@@ -165,7 +165,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       "A redesigned dashboard that surfaces experiment variations, status, and results at a glance.",
     tag: "Optimizely - 2024",
-    cardImage: "/images/case-studies/feature-flag-dashboard.png",
+    cardImage: "/images/case-studies/feature-flag-dashboard-new.png",
     coverImage: "/images/case-studies/placeholder/feature-flag-dashboard.png",
     coverVideo: "/case-videos/flag-dashboaard.mp4",
     role: "Design lead",
@@ -203,7 +203,7 @@ export const caseStudies: CaseStudy[] = [
     description:
       "Unified visual and AI patterns across Optimizely's product suite.",
     tag: "Optimizely - 2024",
-    cardImage: "/images/case-studies/opal-ai-guidelines.png",
+    cardImage: "/images/case-studies/opal-ai-guidelines-new-v3.png",
     coverImage: "/case-videos/image/opal.png",
     role: "Design lead",
     company: "Optimizely",
