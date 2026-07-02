@@ -35,7 +35,7 @@ export default function Card({ caseStudy, onClick }: CardProps) {
       onClick={onClick}
       className="group flex cursor-pointer flex-col items-start overflow-hidden rounded-[8px] text-left border border-border shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_8px_16px_0px_rgba(0,0,0,0.2)]"
     >
-      <div className="relative aspect-[3/2] w-full overflow-hidden">
+      <div className="relative h-[360px] w-full overflow-hidden">
         <Image
           src={caseStudy.cardImage}
           alt={caseStudy.title}

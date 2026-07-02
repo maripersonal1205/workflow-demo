@@ -125,7 +125,7 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-10 bg-white/20 backdrop-blur pt-4 pb-6 md:py-6">
-      <div className="mx-auto flex w-full max-w-[1000px] flex-row items-center justify-between pl-4 pr-6 text-base md:px-6">
+      <div className="mx-auto flex w-full max-w-[1100px] flex-row items-center justify-between pl-4 pr-6 text-base md:px-6">
         <a
           href="https://marihirano.com"
           aria-label="Mari Hirano — home"
@@ -206,7 +206,8 @@ export default function Header() {
       )}
       {menuMounted && (
         <div
-          className={`fixed inset-0 z-40 flex flex-col gap-9 border-b border-border bg-white/90 pt-4 pb-6 shadow-card backdrop-blur-[5px] transition-transform duration-300 ease-out md:hidden ${
+          style={{ background: "linear-gradient(331deg, #FFF -4.03%, #E2E2FF 333.9%)" }}
+          className={`fixed inset-0 z-40 flex flex-col gap-9 border-b border-border pt-4 pb-6 shadow-card backdrop-blur-[5px] transition-transform duration-300 ease-out md:hidden ${
             menuShown ? "translate-x-0" : "translate-x-full"
           }`}
         >
