@@ -244,7 +244,6 @@ export default function CaseStudyModal({
                 {displayedCaseStudy.description}
               </p>
             </div>
-            <div className="h-px w-full shrink-0 bg-border-content" />
             <div className="flex flex-col gap-4 text-base text-default-text">
               {displayedCaseStudy.body.map((paragraph, index) => (
                 <p key={index} className="leading-[1.5]">
