@@ -2,7 +2,7 @@ import { workExperience } from "@/data/work-experience";
 
 export default function WorkExperience() {
   return (
-    <section id="work-experience" className="flex flex-col gap-6 scroll-mt-24">
+    <section id="work-experience" className="flex flex-col gap-10 scroll-mt-24">
       <h2 className="font-mono text-sm lowercase text-secondary-text">
         // work experience
       </h2>

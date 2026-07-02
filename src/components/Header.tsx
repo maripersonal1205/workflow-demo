@@ -123,7 +123,8 @@ export default function Header() {
   }, [toastShown]);
 
   return (
-    <header className="sticky top-0 z-10 border-b border-border bg-background pt-4 pb-6 md:py-6">
+    <>
+      <header className="sticky top-0 z-10 bg-white/20 backdrop-blur pt-4 pb-6 md:py-6">
       <div className="mx-auto flex w-full max-w-[1000px] flex-row items-center justify-between pl-4 pr-6 text-base md:px-6">
         <a
           href="https://marihirano.com"
@@ -188,6 +189,7 @@ export default function Header() {
           </button>
         </nav>
       </div>
+      </header>
       {toastMounted && (
         <div
           ref={toastRef}
@@ -264,6 +266,6 @@ export default function Header() {
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }

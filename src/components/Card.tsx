@@ -35,7 +35,7 @@ export default function Card({ caseStudy, onClick }: CardProps) {
       onClick={onClick}
       className="group flex cursor-pointer flex-col items-start overflow-hidden rounded-[8px] text-left border border-border shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_8px_16px_0px_rgba(0,0,0,0.2)]"
     >
-      <div className="relative aspect-16/9 w-full overflow-hidden">
+      <div className="relative aspect-[3/2] w-full overflow-hidden">
         <Image
           src={caseStudy.cardImage}
           alt={caseStudy.title}
@@ -43,18 +43,19 @@ export default function Card({ caseStudy, onClick }: CardProps) {
           className="object-cover transition-transform duration-300 ease-out group-hover:scale-110"
           sizes="(min-width: 768px) 50vw, 100vw"
         />
-        <div className="absolute inset-0 z-10 flex items-start justify-between p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <span className="flex h-8 items-center rounded-[4px] bg-[rgba(49,49,49,0.75)] px-2.5 font-mono text-xs lowercase leading-[1.5] text-white backdrop-blur-[2px]">
-            {hoverTag}
-          </span>
-          <span className="flex size-8 items-center justify-center rounded-[4px] bg-[rgba(87,87,87,0.8)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.1)] backdrop-blur-[2px]">
-            <ArrowUpRight />
-          </span>
+        <div className="absolute inset-0 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <div className="flex items-start justify-between p-3">
+            <span className="flex h-8 items-center rounded-[4px] bg-[rgba(49,49,49,0.75)] px-2.5 font-mono text-xs lowercase leading-[1.5] text-white backdrop-blur-[2px]">
+              {hoverTag}
+            </span>
+            <span className="flex size-8 items-center justify-center rounded-[4px] bg-[rgba(87,87,87,0.8)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.1)] backdrop-blur-[2px]">
+              <ArrowUpRight />
+            </span>
+          </div>
+          <p className="absolute inset-x-3 bottom-3 rounded-[4px] bg-[rgba(0,0,0,0.45)] p-4 font-mono text-sm lowercase leading-[1.5] text-white backdrop-blur-[2px]">
+            {caseStudy.description}
+          </p>
         </div>
-      </div>
-      <div className="flex w-full flex-col gap-0.5 border-t border-border bg-background p-4 text-default-text">
-        <p className="text-base font-semibold">{caseStudy.title}</p>
-        <p className="text-base">{caseStudy.description}</p>
       </div>
     </button>
   );
