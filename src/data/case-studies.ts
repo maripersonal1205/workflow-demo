@@ -204,7 +204,7 @@ export const caseStudies: CaseStudy[] = [
       "Unified visual and AI patterns across Optimizely's product suite.",
     tag: "Optimizely - 2024",
     cardImage: "/images/case-studies/opal-ai-guidelines.png",
-    coverImage: "/images/case-studies/placeholder/opal-ai-guidelines.png",
+    coverImage: "/case-videos/image/opal.png",
     role: "Design lead",
     company: "Optimizely",
     status: "Shipped in 2024",
