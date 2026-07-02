@@ -2,7 +2,7 @@ import { education } from "@/data/education";
 
 export default function Education() {
   return (
-    <section className="flex flex-col gap-6">
+    <section className="flex flex-col gap-10">
       <h2 className="font-mono text-sm lowercase text-secondary-text">
         // education
       </h2>

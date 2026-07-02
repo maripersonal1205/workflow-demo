@@ -17,7 +17,7 @@ export default function CaseStudiesSection() {
       : undefined;
 
   return (
-    <section id="work" className="flex scroll-mt-25 flex-col gap-6">
+    <section id="work" className="flex scroll-mt-25 flex-col gap-10">
       <h2 className="font-mono text-sm lowercase text-secondary-text">
         // recent work
       </h2>
