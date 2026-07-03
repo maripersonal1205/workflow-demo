@@ -60,20 +60,20 @@ export default function Hero() {
           showHeadline ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
         }`}
       >
-        <div className="flex max-w-[830px] flex-col gap-4 font-display text-default-text">
+        <div className="flex max-w-[830px] flex-col gap-4 font-display text-default-text text-pretty">
           <p className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
-            I&apos;m Mari — product designer based in LA.
+            I&apos;m Mari — product designer based in&nbsp;LA.
           </p>
           <p className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
             I enjoy working with complex systems, where I get to design
-            simplified experiences without losing what makes the systems
-            powerful.
+            simplified experiences without losing what makes the
+            systems&nbsp;powerful.
           </p>
           <p className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
             Previously at <strong className="font-semibold">Webflow</strong>,{" "}
             <strong className="font-semibold">Optimizely</strong>, and{" "}
             <strong className="font-semibold">IBM</strong>, I untangled intricate
-            challenges for marketers, developers, and designers.
+            challenges for marketers, developers, and&nbsp;designers.
           </p>
         </div>
       </div>

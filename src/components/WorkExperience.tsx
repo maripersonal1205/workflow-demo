@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { workExperience } from "@/data/work-experience";
+import { preventWidows } from "@/lib/text";
 
 const LABEL = "// work experience";
 
@@ -52,12 +53,14 @@ export default function WorkExperience() {
               <div className="flex flex-1 flex-col justify-center gap-2">
                 <div className="flex flex-col">
                   <p className="text-base font-semibold text-default-text">
-                    {entry.company}
+                    {preventWidows(entry.company)}
                   </p>
-                  <p className="text-base text-secondary-text">{entry.role}</p>
+                  <p className="text-base text-secondary-text">
+                    {preventWidows(entry.role)}
+                  </p>
                 </div>
                 <p className="text-base leading-[1.7] text-default-text">
-                  {entry.description}
+                  {preventWidows(entry.description)}
                 </p>
               </div>
             </div>

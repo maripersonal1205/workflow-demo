@@ -6,7 +6,7 @@ export type EducationEntry = {
 
 export const education: EducationEntry[] = [
   {
-    dates: "Sept 2012 - June 2014",
+    dates: "June 2018 - June 2019",
     school: "UCLA Extension",
     program: "Academic Certificate in User Experience",
   },
