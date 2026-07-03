@@ -60,7 +60,7 @@ function ArrowUpRight() {
 function PauseIcon() {
   return (
     <svg width="7" height="10" viewBox="13 8 6 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18 9V16M14 9V16" stroke="#D2D2D2" strokeLinecap="round" strokeWidth="1" />
+      <path d="M18 9V16M14 9V16" stroke="#313131" strokeLinecap="round" strokeWidth="1" />
     </svg>
   );
 }
@@ -68,7 +68,7 @@ function PauseIcon() {
 function PlayIcon() {
   return (
     <svg width="10" height="10" viewBox="12 8 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13 15V9L19 12L13 15Z" fill="none" stroke="#D2D2D2" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M13 15V9L19 12L13 15Z" fill="none" stroke="#313131" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -191,7 +191,7 @@ export default function CaseStudyModal({
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="absolute right-3 top-3 flex size-6 cursor-pointer items-center justify-center rounded-[4px] bg-[rgba(87,87,87,0.8)] text-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.1)] backdrop-blur-[2px]"
+            className="absolute right-3 top-3 flex size-8 cursor-pointer items-center justify-center rounded-[4px] bg-[rgba(49,49,49,0.65)] text-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.1)] backdrop-blur-[2px]"
           >
             <CloseIcon />
           </button>
@@ -219,7 +219,7 @@ export default function CaseStudyModal({
                   type="button"
                   onClick={togglePlayPause}
                   aria-label={isPlaying ? "Pause video" : "Play video"}
-                  className="absolute bottom-3 right-3 flex size-8 cursor-pointer items-center justify-center rounded-full bg-[rgba(34,34,34,0.45)] backdrop-blur-sm outline-none [-webkit-tap-highlight-color:transparent]"
+                  className="absolute bottom-3 right-3 flex size-8 cursor-pointer items-center justify-center rounded-full bg-[rgba(255,255,255,0.45)] backdrop-blur-sm outline-none [-webkit-tap-highlight-color:transparent]"
                 >
                   {isPlaying ? <PauseIcon /> : <PlayIcon />}
                 </button>

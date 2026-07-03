@@ -74,7 +74,7 @@ export default function Card({ caseStudy, onClick }: CardProps) {
               <ArrowUpRight />
             </span>
           </div>
-          <p className="absolute inset-x-3 bottom-3 rounded-[4px] bg-[rgba(49,49,49,0.65)] p-4 font-mono text-sm lowercase leading-[1.5] text-white backdrop-blur-[2px]">
+          <p className="absolute inset-x-3 bottom-3 rounded-[4px] bg-[rgba(49,49,49,0.65)] p-3 font-mono text-sm lowercase leading-[1.5] text-white backdrop-blur-[2px]">
             {preventWidows(caseStudy.description)}
           </p>
         </div>
