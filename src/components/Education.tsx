@@ -1,4 +1,5 @@
 import { education } from "@/data/education";
+import { preventWidows } from "@/lib/text";
 
 export default function Education() {
   return (
@@ -21,9 +22,11 @@ export default function Education() {
               </p>
               <div className="flex flex-col">
                 <p className="text-base font-semibold text-default-text">
-                  {entry.school}
+                  {preventWidows(entry.school)}
                 </p>
-                <p className="text-base text-secondary-text">{entry.program}</p>
+                <p className="text-base text-secondary-text">
+                  {preventWidows(entry.program)}
+                </p>
               </div>
             </div>
           </div>

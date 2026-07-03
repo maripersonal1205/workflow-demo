@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { CaseStudy } from "@/data/case-studies";
+import { preventWidows } from "@/lib/text";
 
 type CardProps = {
   caseStudy: CaseStudy;
@@ -74,7 +75,7 @@ export default function Card({ caseStudy, onClick }: CardProps) {
             </span>
           </div>
           <p className="absolute inset-x-3 bottom-3 rounded-[4px] bg-[rgba(49,49,49,0.65)] p-4 font-mono text-sm lowercase leading-[1.5] text-white backdrop-blur-[2px]">
-            {caseStudy.description}
+            {preventWidows(caseStudy.description)}
           </p>
         </div>
       </div>
