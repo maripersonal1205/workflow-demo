@@ -140,25 +140,6 @@ export default function Header() {
             className="h-[33px] w-auto"
           />
         </a>
-        <button
-          type="button"
-          onClick={openMenu}
-          aria-label="Open menu"
-          aria-expanded={menuMounted}
-          className="flex h-4 w-6 shrink-0 items-center justify-center text-default-text md:hidden"
-        >
-          <svg
-            width="24"
-            height="16"
-            viewBox="0 0 24 16"
-            fill="none"
-            aria-hidden="true"
-          >
-            <line x1="1" y1="1" x2="23" y2="1" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="1" y1="8" x2="23" y2="8" stroke="currentColor" strokeWidth="1.5" />
-            <line x1="1" y1="15" x2="23" y2="15" stroke="currentColor" strokeWidth="1.5" />
-          </svg>
-        </button>
         <nav className="hidden flex-wrap items-center gap-4 whitespace-nowrap font-mono text-sm lowercase font-normal text-default-text md:flex">
           {NAV_LINKS.map((link) => (
             <a key={link.label} href={link.href} className="group relative">
@@ -190,6 +171,32 @@ export default function Header() {
         </nav>
       </div>
       </header>
+      <button
+        type="button"
+        onClick={menuMounted ? closeMenu : openMenu}
+        aria-label={menuMounted ? "Close menu" : "Open menu"}
+        aria-expanded={menuMounted}
+        className="fixed right-6 top-4 z-50 flex h-[33px] w-6 items-center justify-center text-default-text md:hidden"
+      >
+        <span className="relative block h-4 w-6">
+          <span
+            className="absolute left-1/2 top-1/2 h-[1.5px] w-6 bg-current transition-transform duration-300 ease-out"
+            style={{
+              transform: menuShown
+                ? "translate(-50%, -50%) rotate(-45deg)"
+                : "translate(-50%, -50%) translateY(-5px)",
+            }}
+          />
+          <span
+            className="absolute left-1/2 top-1/2 h-[1.5px] w-6 bg-current transition-transform duration-300 ease-out"
+            style={{
+              transform: menuShown
+                ? "translate(-50%, -50%) rotate(45deg)"
+                : "translate(-50%, -50%) translateY(5px)",
+            }}
+          />
+        </span>
+      </button>
       {toastMounted && (
         <div
           ref={toastRef}
@@ -206,34 +213,15 @@ export default function Header() {
       )}
       {menuMounted && (
         <div
-          style={{ background: "linear-gradient(331deg, #FFF -4.03%, #E2E2FF 333.9%)" }}
-          className={`fixed inset-0 z-40 flex flex-col gap-9 border-b border-border pt-4 pb-6 shadow-card backdrop-blur-[5px] transition-transform duration-300 ease-out md:hidden ${
+          style={{
+            background:
+              "linear-gradient(331deg, rgba(255,255,255,0.9) -4.03%, rgba(226,226,255,0.9) 333.9%)",
+          }}
+          className={`fixed inset-0 z-40 flex flex-col gap-9 border-b border-border pt-4 pb-6 shadow-card backdrop-blur-md transition-transform duration-300 ease-out md:hidden ${
             menuShown ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="flex items-center justify-between pl-4 pr-6">
-            <span
-              aria-hidden="true"
-              className="invisible block h-[33px] w-[84px]"
-            />
-            <button
-              type="button"
-              onClick={closeMenu}
-              aria-label="Close menu"
-              className="flex h-4 w-6 shrink-0 items-center justify-center text-default-text"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                aria-hidden="true"
-              >
-                <line x1="1.5" y1="1.5" x2="14.5" y2="14.5" stroke="currentColor" strokeWidth="1.5" />
-                <line x1="14.5" y1="1.5" x2="1.5" y2="14.5" stroke="currentColor" strokeWidth="1.5" />
-              </svg>
-            </button>
-          </div>
+          <div aria-hidden="true" className="h-[33px] shrink-0" />
           <nav className="flex w-full flex-col items-center gap-8 px-4 font-mono text-[14px] lowercase font-normal">
             {NAV_LINKS.map((link) => (
               <a
