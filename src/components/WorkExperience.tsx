@@ -1,13 +1,43 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { workExperience } from "@/data/work-experience";
 
+const LABEL = "// work experience";
+
 export default function WorkExperience() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [revealed, setRevealed] = useState(false);
+
+  // Fade the heading and content in once the section scrolls into view.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -15% 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="work-experience" className="flex flex-col gap-10 scroll-mt-24">
-      <h2 className="font-mono text-sm lowercase text-secondary-text">
-        // work experience
-      </h2>
-      <div className="flex flex-col">
-        {workExperience.map((entry, index) => (
+    <section ref={sectionRef} id="work-experience" className="scroll-mt-24">
+      <div
+        className={`flex flex-col gap-10 transition-[opacity,translate] duration-2000 ease-out ${
+          revealed ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+        }`}
+      >
+        <h2 className="font-mono text-sm lowercase text-secondary-text">
+          {LABEL}
+        </h2>
+        <div className="flex flex-col">
+          {workExperience.map((entry, index) => (
           <div key={entry.company} className="flex gap-4">
             <div className="flex w-3 flex-col items-center">
               <span className="mt-1.5 size-2 shrink-0 rounded-full bg-previous-signal" />
@@ -26,13 +56,14 @@ export default function WorkExperience() {
                   </p>
                   <p className="text-base text-secondary-text">{entry.role}</p>
                 </div>
-                <p className="text-base text-default-text">
+                <p className="text-base leading-[1.6] text-default-text">
                   {entry.description}
                 </p>
               </div>
             </div>
           </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

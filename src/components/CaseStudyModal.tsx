@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import type { CaseStudy } from "@/data/case-studies";
 
@@ -153,7 +154,7 @@ export default function CaseStudyModal({
     }
   }
 
-  return (
+  return createPortal(
     <div
       className={`fixed inset-0 z-50 flex bg-[rgba(0,0,0,0.75)] transition-opacity duration-300 md:items-center md:justify-center md:gap-20 md:p-6 ${
         isMounted ? "opacity-100" : "opacity-0"
@@ -240,13 +241,13 @@ export default function CaseStudyModal({
               <p className="text-base font-semibold leading-[1.5] text-default-text">
                 {displayedCaseStudy.title}
               </p>
-              <p className="text-sm leading-[1.5] text-secondary-text">
+              <p className="text-sm leading-[1.6] text-secondary-text">
                 {displayedCaseStudy.description}
               </p>
             </div>
             <div className="flex flex-col gap-4 text-base text-default-text">
               {displayedCaseStudy.body.map((paragraph, index) => (
-                <p key={index} className="leading-[1.5]">
+                <p key={index} className="leading-[1.6]">
                   {paragraph}
                 </p>
               ))}
@@ -297,6 +298,7 @@ export default function CaseStudyModal({
           </>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

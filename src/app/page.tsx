@@ -4,20 +4,26 @@ import CaseStudiesSection from "@/components/CaseStudiesSection";
 import WorkExperience from "@/components/WorkExperience";
 import Education from "@/components/Education";
 import Footer from "@/components/Footer";
+import RevealOnScroll from "@/components/RevealOnScroll";
+import MainContainer from "@/components/MainContainer";
 
 export default function Home() {
   return (
-    <div className="flex min-h-full flex-col" style={{ background: "linear-gradient(331deg, #FFF -4.03%, #E2E2FF 333.9%)" }}>
+    <div className="flex min-h-dvh flex-col" style={{ background: "linear-gradient(331deg, #FFF -4.03%, #E2E2FF 333.9%)" }}>
       <Header />
-      <main className="mx-auto flex w-full max-w-[1100px] flex-1 flex-col gap-20 px-4 pt-14 pb-20 md:px-6 md:py-20">
+      <MainContainer>
         <Hero />
-        <CaseStudiesSection />
-        <div className="flex flex-col gap-6">
-          <WorkExperience />
-          <Education />
-        </div>
-      </main>
-      <Footer />
+        <RevealOnScroll className="flex flex-col gap-20">
+          <CaseStudiesSection />
+          <div className="flex flex-col gap-6">
+            <WorkExperience />
+            <Education />
+          </div>
+        </RevealOnScroll>
+      </MainContainer>
+      <RevealOnScroll>
+        <Footer />
+      </RevealOnScroll>
     </div>
   );
 }
