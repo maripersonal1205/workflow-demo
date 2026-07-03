@@ -51,7 +51,7 @@ export const caseStudies: CaseStudy[] = [
     tag: "Webflow - 2026",
     cardImage: "/images/case-studies/aeo-analytics-new.png",
     coverImage: "/images/case-studies/placeholder/aeo-analytics.png",
-    coverVideo: "/case-videos/AEO.mp4",
+    coverVideo: "/case-videos/AEO_v2.mp4",
     role: "Design lead",
     company: "Webflow",
     status: "Shipped in Spring 2026",
