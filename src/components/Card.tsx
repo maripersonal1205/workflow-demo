@@ -66,14 +66,14 @@ export default function Card({ caseStudy, onClick }: CardProps) {
           }`}
         >
           <div className="flex items-start justify-between p-3">
-            <span className="flex h-8 items-center rounded-[4px] bg-[rgba(49,49,49,0.75)] px-2.5 font-mono text-xs lowercase leading-[1.5] text-white backdrop-blur-[2px]">
+            <span className="flex h-8 items-center rounded-[4px] bg-[rgba(49,49,49,0.65)] px-2.5 font-mono text-xs lowercase leading-[1.5] text-white backdrop-blur-[2px]">
               {hoverTag}
             </span>
-            <span className="flex size-8 items-center justify-center rounded-[4px] bg-[rgba(87,87,87,0.8)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.1)] backdrop-blur-[2px]">
+            <span className="flex size-8 items-center justify-center rounded-[4px] bg-[rgba(49,49,49,0.65)] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.1)] backdrop-blur-[2px]">
               <ArrowUpRight />
             </span>
           </div>
-          <p className="absolute inset-x-3 bottom-3 rounded-[4px] bg-[rgba(0,0,0,0.45)] p-4 font-mono text-sm lowercase leading-[1.5] text-white backdrop-blur-[2px]">
+          <p className="absolute inset-x-3 bottom-3 rounded-[4px] bg-[rgba(49,49,49,0.65)] p-4 font-mono text-sm lowercase leading-[1.5] text-white backdrop-blur-[2px]">
             {caseStudy.description}
           </p>
         </div>
