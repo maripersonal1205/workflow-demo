@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { TypingLabel, useTypewriter } from "./typewriter";
 
-const ABOUT_LABEL = "// about";
+const ABOUT_LABEL = "// hello, world";
 const RECENT_LABEL = "// recent work";
 const TYPING_START_DELAY = 200;
 const HEADLINE_DELAY = 500;
@@ -62,9 +62,7 @@ export default function Hero() {
       >
         <div className="flex max-w-[830px] flex-col gap-4 font-display text-default-text">
           <p className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
-            Hi there, I&apos;m Mari.{" "}
-            <strong className="font-semibold">Senior product designer</strong>{" "}
-            based in LA.
+            I&apos;m Mari. Senior product designer based in LA.
           </p>
           <p className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
             I enjoy working with complex systems, where I get to design
@@ -75,7 +73,7 @@ export default function Hero() {
             Previously at <strong className="font-semibold">Webflow</strong>,{" "}
             <strong className="font-semibold">Optimizely</strong>, and{" "}
             <strong className="font-semibold">IBM</strong>, I untangled intricate
-            challenges for developers, designers, and marketers.
+            challenges for marketers, developers, and designers.
           </p>
         </div>
       </div>
