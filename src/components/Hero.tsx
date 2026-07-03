@@ -65,7 +65,7 @@ export default function Hero() {
             I&apos;m Mari. Senior product designer based in LA.
           </p>
           <p className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
-            I enjoy working with complex systems, where I get to design
+            I enjoy working with complex systems, where I design
             simplified experiences without losing what makes the systems
             powerful.
           </p>
