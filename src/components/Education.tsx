@@ -15,7 +15,7 @@ export default function Education() {
                 <span className="mt-2 w-px flex-1 bg-border" />
               )}
             </div>
-            <div className="flex flex-1 flex-col gap-2 pb-8 sm:flex-row sm:gap-1">
+            <div className="flex flex-1 flex-col gap-2 pb-15 sm:flex-row sm:gap-1">
               <p className="shrink-0 font-mono text-sm lowercase text-secondary-text sm:w-[207px]">
                 {entry.dates}
               </p>
