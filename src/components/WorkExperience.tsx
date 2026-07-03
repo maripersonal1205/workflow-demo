@@ -56,7 +56,7 @@ export default function WorkExperience() {
                   </p>
                   <p className="text-base text-secondary-text">{entry.role}</p>
                 </div>
-                <p className="text-base leading-[1.6] text-default-text">
+                <p className="text-base leading-[1.7] text-default-text">
                   {entry.description}
                 </p>
               </div>

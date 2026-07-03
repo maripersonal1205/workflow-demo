@@ -175,7 +175,7 @@ export default function CaseStudyModal({
             >
               <ArrowCircleIcon direction="left" />
             </button>
-            <p className="absolute top-[52px] left-1/2 w-[125px] -translate-x-1/2 text-center text-sm leading-[1.5] text-[#D0D0D0]">
+            <p className="absolute top-[52px] left-1/2 w-[125px] -translate-x-1/2 text-center text-sm leading-[1.7] text-[#D0D0D0]">
               {previousCaseStudy.title}
             </p>
           </>
@@ -238,16 +238,16 @@ export default function CaseStudyModal({
 
           <div className="flex shrink-0 flex-col gap-6 px-4 pt-6 pb-8 md:px-8">
             <div className="flex w-full flex-col gap-0.5">
-              <p className="text-base font-semibold leading-[1.5] text-default-text">
+              <p className="text-base font-semibold leading-[1.7] text-default-text">
                 {displayedCaseStudy.title}
               </p>
-              <p className="text-sm leading-[1.6] text-secondary-text">
+              <p className="text-sm leading-[1.7] text-secondary-text">
                 {displayedCaseStudy.description}
               </p>
             </div>
             <div className="flex flex-col gap-4 text-base text-default-text">
               {displayedCaseStudy.body.map((paragraph, index) => (
-                <p key={index} className="leading-[1.6]">
+                <p key={index} className="leading-[1.7]">
                   {paragraph}
                 </p>
               ))}
@@ -292,7 +292,7 @@ export default function CaseStudyModal({
             >
               <ArrowCircleIcon direction="right" />
             </button>
-            <p className="absolute top-[52px] left-1/2 w-[125px] -translate-x-1/2 text-center text-sm leading-[1.5] text-[#D0D0D0]">
+            <p className="absolute top-[52px] left-1/2 w-[125px] -translate-x-1/2 text-center text-sm leading-[1.7] text-[#D0D0D0]">
               {nextCaseStudy.title}
             </p>
           </>
