@@ -28,6 +28,11 @@
   --shadow-card: 0 4px 10px 0 rgb(0 0 0 / 0.05);
 }
 
+html {
+  /* Disabled so MainContainer can compensate the top-padding collapse exactly. */
+  overflow-anchor: none;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-default-text);
