@@ -62,7 +62,7 @@ export default function Hero() {
       >
         <div className="flex max-w-[830px] flex-col gap-4 font-display text-default-text">
           <p className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
-            I&apos;m Mari. Senior product designer based in LA.
+            I&apos;m Mari — product designer based in LA.
           </p>
           <p className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
             I enjoy working with complex systems, where I get to design
