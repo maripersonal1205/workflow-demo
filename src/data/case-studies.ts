@@ -47,7 +47,7 @@ export const caseStudies: CaseStudy[] = [
     id: "aeo-analytics",
     title: "AEO Analytics",
     description:
-      "Analytics that help marketers stay visible as search shifts from traditional engines to AI.",
+      "analytics that help brands stay visible as search shifts from traditional engines to AI.",
     tag: "Webflow - 2026",
     cardImage: "/images/case-studies/aeo-analytics-new.png",
     coverImage: "/images/case-studies/placeholder/aeo-analytics.png",
