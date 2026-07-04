@@ -61,9 +61,9 @@ export default function Hero() {
         }`}
       >
         <div className="flex max-w-[830px] flex-col gap-4 font-display text-default-text text-pretty">
-          <p className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
+          <h1 className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
             I&apos;m Mari — product designer based in&nbsp;LA.
-          </p>
+          </h1>
           <p className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
             I enjoy working with complex systems, where I get to design
             simplified experiences without losing what makes the

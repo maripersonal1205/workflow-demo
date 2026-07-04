@@ -15,6 +15,11 @@ export function useTypewriter(
 
   useEffect(() => {
     if (!active) return;
+    // Skip the character-by-character animation for reduced-motion users.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setLength(text.length);
+      return;
+    }
     let intervalId: ReturnType<typeof setInterval>;
     const startTimeout = setTimeout(() => {
       intervalId = setInterval(() => {

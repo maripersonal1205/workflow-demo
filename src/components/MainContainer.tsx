@@ -32,7 +32,9 @@ export default function MainContainer({ children }: { children: ReactNode }) {
 
   return (
     <main
-      className={`mx-auto flex w-full max-w-[1100px] flex-1 flex-col gap-10 px-4 pb-20 pt-20 md:px-6 md:pb-20 ${
+      id="main-content"
+      tabIndex={-1}
+      className={`mx-auto flex w-full max-w-[1100px] flex-1 flex-col gap-10 px-4 pb-20 pt-20 outline-none md:px-6 md:pb-20 ${
         collapsed ? "md:pt-20" : "md:pt-40"
       }`}
     >

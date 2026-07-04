@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useFocusTrap } from "@/lib/useFocusTrap";
 
 const EMAIL = "mhirano1205@gmail.com";
 
@@ -50,6 +51,11 @@ export default function Header() {
   const hideTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const unmountTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const menuCloseTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const menuDialogRef = useRef<HTMLDivElement>(null);
+
+  // Keep keyboard focus within the open menu (toggle button + links) and
+  // restore it to the toggle when the menu closes.
+  useFocusTrap([menuDialogRef], menuMounted);
 
   const openMenu = () => {
     if (menuCloseTimeoutRef.current) clearTimeout(menuCloseTimeoutRef.current);
@@ -171,12 +177,19 @@ export default function Header() {
         </nav>
       </div>
       </header>
+      <div
+        ref={menuDialogRef}
+        role={menuMounted ? "dialog" : undefined}
+        aria-modal={menuMounted || undefined}
+        aria-label={menuMounted ? "Menu" : undefined}
+      >
       <button
         type="button"
         onClick={menuMounted ? closeMenu : openMenu}
         aria-label={menuMounted ? "Close menu" : "Open menu"}
         aria-expanded={menuMounted}
-        className="fixed right-6 top-4 z-50 flex h-[33px] w-6 items-center justify-center text-default-text md:hidden"
+        aria-controls="mobile-menu"
+        className="fixed right-3.5 top-[10.5px] z-50 flex size-11 items-center justify-center text-default-text md:hidden"
       >
         <span className="relative block h-4 w-6">
           <span
@@ -213,6 +226,7 @@ export default function Header() {
       )}
       {menuMounted && (
         <div
+          id="mobile-menu"
           style={{
             background:
               "linear-gradient(331deg, rgba(255,255,255,0.9) -4.03%, rgba(226,226,255,0.9) 333.9%)",
@@ -255,6 +269,7 @@ export default function Header() {
           </nav>
         </div>
       )}
+      </div>
     </>
   );
 }
