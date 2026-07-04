@@ -19,6 +19,7 @@ export default function CaseStudiesSection() {
 
   return (
     <section id="work" className="flex scroll-mt-25 flex-col gap-10">
+      <h2 className="sr-only">recent work</h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {caseStudies.map((caseStudy) => (
           <Card

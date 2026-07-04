@@ -38,7 +38,7 @@ export default function RevealOnScroll({
       className={`${className} transition-[opacity,translate] duration-2000 ease-out ${
         revealed
           ? "translate-y-0 opacity-100"
-          : "pointer-events-none translate-y-8 opacity-0"
+          : "pointer-events-none invisible translate-y-8 opacity-0"
       }`}
     >
       {children}

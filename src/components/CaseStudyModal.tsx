@@ -4,6 +4,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import type { CaseStudy } from "@/data/case-studies";
+import { useFocusTrap } from "@/lib/useFocusTrap";
 
 type CaseStudyModalProps = {
   caseStudy: CaseStudy;
@@ -105,6 +106,21 @@ export default function CaseStudyModal({
   const [isContentVisible, setIsContentVisible] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Keep keyboard focus inside the dialog and restore it on close.
+  useFocusTrap([overlayRef], true, closeButtonRef);
+
+  // Don't autoplay the cover video for users who prefer reduced motion.
+  useEffect(() => {
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const video = videoRef.current;
+    if (video) {
+      video.pause();
+      setIsPlaying(false);
+    }
+  }, [displayedCaseStudy.id]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -156,6 +172,10 @@ export default function CaseStudyModal({
 
   return createPortal(
     <div
+      ref={overlayRef}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="case-study-modal-title"
       className={`fixed inset-0 z-50 flex bg-[rgba(0,0,0,0.75)] transition-opacity duration-300 md:items-center md:justify-center md:gap-20 md:p-6 ${
         isMounted ? "opacity-100" : "opacity-0"
       }`}
@@ -171,7 +191,7 @@ export default function CaseStudyModal({
                 onNavigate(previousCaseStudy);
               }}
               aria-label={`Previous case study: ${previousCaseStudy.title}`}
-              className="flex size-11 cursor-pointer items-center justify-center overflow-hidden rounded-full outline-none [-webkit-tap-highlight-color:transparent]"
+              className="flex size-11 cursor-pointer items-center justify-center overflow-hidden rounded-full outline-none focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-white [-webkit-tap-highlight-color:transparent]"
             >
               <ArrowCircleIcon direction="left" />
             </button>
@@ -188,6 +208,7 @@ export default function CaseStudyModal({
         {/* Zero-height sticky bar keeps the close button pinned while scrolling */}
         <div className="sticky top-0 z-10 h-0">
           <button
+            ref={closeButtonRef}
             type="button"
             onClick={onClose}
             aria-label="Close"
@@ -219,7 +240,7 @@ export default function CaseStudyModal({
                   type="button"
                   onClick={togglePlayPause}
                   aria-label={isPlaying ? "Pause video" : "Play video"}
-                  className="absolute bottom-3 right-3 flex size-8 cursor-pointer items-center justify-center rounded-full bg-[rgba(255,255,255,0.45)] backdrop-blur-sm outline-none [-webkit-tap-highlight-color:transparent]"
+                  className="absolute bottom-3 right-3 flex size-8 cursor-pointer items-center justify-center rounded-full bg-[rgba(255,255,255,0.45)] backdrop-blur-sm outline-none focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-[#313131] [-webkit-tap-highlight-color:transparent]"
                 >
                   {isPlaying ? <PauseIcon /> : <PlayIcon />}
                 </button>
@@ -227,7 +248,7 @@ export default function CaseStudyModal({
             ) : (
               <Image
                 src={displayedCaseStudy.coverImage}
-                alt=""
+                alt={`${displayedCaseStudy.title} cover`}
                 fill
                 className="object-cover"
                 sizes="640px"
@@ -238,9 +259,12 @@ export default function CaseStudyModal({
 
           <div className="flex shrink-0 flex-col gap-6 px-4 pt-6 pb-8 md:px-8">
             <div className="flex w-full flex-col gap-0.5">
-              <p className="text-base font-semibold leading-[1.7] text-default-text">
+              <h2
+                id="case-study-modal-title"
+                className="text-base font-semibold leading-[1.7] text-default-text"
+              >
                 {displayedCaseStudy.title}
-              </p>
+              </h2>
               <p className="text-sm leading-[1.7] text-secondary-text">
                 {displayedCaseStudy.description}
               </p>
@@ -288,7 +312,7 @@ export default function CaseStudyModal({
                 onNavigate(nextCaseStudy);
               }}
               aria-label={`Next case study: ${nextCaseStudy.title}`}
-              className="flex size-11 cursor-pointer items-center justify-center overflow-hidden rounded-full outline-none [-webkit-tap-highlight-color:transparent]"
+              className="flex size-11 cursor-pointer items-center justify-center overflow-hidden rounded-full outline-none focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-offset-2 focus-visible:outline-white [-webkit-tap-highlight-color:transparent]"
             >
               <ArrowCircleIcon direction="right" />
             </button>
