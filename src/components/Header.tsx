@@ -147,6 +147,9 @@ export default function Header() {
           />
         </a>
         <nav className="hidden flex-wrap items-center gap-4 whitespace-nowrap font-mono text-sm lowercase font-normal text-default-text md:flex">
+          <span className="mr-4 rounded-[4px] bg-default-text px-2.5 py-1 text-white">
+            demo
+          </span>
           {NAV_LINKS.map((link) => (
             <a key={link.label} href={link.href} className="group relative">
               {link.label}

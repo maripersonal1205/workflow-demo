@@ -1,12 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { TypingLabel, useTypewriter } from "./typewriter";
 
 const ABOUT_LABEL = "// hello, world";
 const RECENT_LABEL = "// recent work";
-const TYPING_START_DELAY = 200;
-const HEADLINE_DELAY = 500;
+const HEADLINE_DELAY = 200;
 const CUE_DELAY = 1000;
 const SCROLL_TRIGGER = 80;
 
@@ -15,9 +13,6 @@ export default function Hero() {
   const [showCue, setShowCue] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [recentVisible, setRecentVisible] = useState(false);
-
-  const aboutLength = useTypewriter(ABOUT_LABEL, true, TYPING_START_DELAY);
-  const aboutDone = aboutLength >= ABOUT_LABEL.length;
 
   // Fade the "// recent work" label in once it swaps in on scroll.
   useEffect(() => {
@@ -28,12 +23,11 @@ export default function Hero() {
     return () => cancelAnimationFrame(id);
   }, [scrolled]);
 
-  // Fade the headline in once the "// about" label finishes typing.
+  // Fade the label + headline in together shortly after mount.
   useEffect(() => {
-    if (!aboutDone) return;
     const timeout = setTimeout(() => setShowHeadline(true), HEADLINE_DELAY);
     return () => clearTimeout(timeout);
-  }, [aboutDone]);
+  }, []);
 
   // Reveal the scroll cue (arrow + text) 1000ms after the headline appears.
   useEffect(() => {
@@ -54,12 +48,14 @@ export default function Hero() {
 
   return (
     <section className="flex flex-col gap-10">
-      <TypingLabel text={ABOUT_LABEL} length={aboutLength} />
       <div
-        className={`transition-[opacity,translate] duration-[3000ms] ease-out ${
+        className={`flex flex-col gap-10 transition-[opacity,translate] duration-[3000ms] ease-out ${
           showHeadline ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
         }`}
       >
+        <p className="font-mono text-sm lowercase text-secondary-text">
+          {ABOUT_LABEL}
+        </p>
         <div className="flex max-w-[830px] flex-col gap-4 font-display text-default-text text-pretty">
           <h1 className="text-[20px] font-light leading-[1.6] sm:text-[24px]">
             I&apos;m Mari — product designer based in&nbsp;LA.
