@@ -1,9 +1,9 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import type { CaseStudy, CaseStudyImage } from "@/data/case-studies";
+import type { CaseStudy } from "@/data/case-studies";
 
 type CaseStudyModalProps = {
   caseStudy: CaseStudy;
@@ -54,54 +54,35 @@ function ArrowUpRight() {
   );
 }
 
-function ZoomIcon() {
+function PlayIcon() {
   return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M11 8.25V13.75M8.25 11H13.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M16 16L20.5 20.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 2L10 6L3 10V2Z" fill="currentColor" />
     </svg>
   );
 }
 
-function chunkPairs<T>(items: T[]): T[][] {
-  const rows: T[][] = [];
-  for (let i = 0; i < items.length; i += 2) {
-    rows.push(items.slice(i, i + 2));
-  }
-  return rows;
+function PauseIcon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="3" y="2" width="2" height="8" rx="0.5" fill="currentColor" />
+      <rect x="7" y="2" width="2" height="8" rx="0.5" fill="currentColor" />
+    </svg>
+  );
 }
 
 export default function CaseStudyModal({
   caseStudy,
   onClose,
 }: CaseStudyModalProps) {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const imageGroups = caseStudy.imageGroups ?? [];
-  const images =
-    caseStudy.images ?? imageGroups.flatMap((group) => group.images);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const hasVideo = Boolean(caseStudy.coverVideo);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        if (expandedIndex !== null) {
-          setExpandedIndex(null);
-        } else {
-          onClose();
-        }
-        return;
-      }
-      if (expandedIndex === null || images.length === 0) return;
-      if (event.key === "ArrowLeft") {
-        setExpandedIndex((index) => (index === null ? null : (index - 1 + images.length) % images.length));
-      } else if (event.key === "ArrowRight") {
-        setExpandedIndex((index) => (index === null ? null : (index + 1) % images.length));
+        onClose();
       }
     };
     document.addEventListener("keydown", handleKeyDown);
@@ -110,29 +91,19 @@ export default function CaseStudyModal({
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
-  }, [onClose, expandedIndex, images.length]);
+  }, [onClose]);
 
-  const renderZoomButton = (image: CaseStudyImage, index: number) => (
-    <button
-      type="button"
-      onClick={() => setExpandedIndex(index)}
-      aria-label="Expand image"
-      className="group relative w-full flex-1 cursor-zoom-in overflow-hidden rounded"
-    >
-      <Image
-        src={image.src}
-        alt=""
-        fill
-        className="object-cover"
-        style={{ objectPosition: image.objectPosition }}
-      />
-      <span className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/30">
-        <span className="text-white opacity-0 transition-opacity group-hover:opacity-100">
-          <ZoomIcon />
-        </span>
-      </span>
-    </button>
-  );
+  const togglePlay = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      void video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
 
   return createPortal(
     <div
@@ -140,128 +111,78 @@ export default function CaseStudyModal({
       onClick={onClose}
     >
       <div
-        className="flex h-full w-full flex-col overflow-hidden bg-background md:h-auto md:max-h-[85vh] md:max-w-[640px] md:rounded-lg md:pt-6 md:pb-8 md:shadow-card"
+        className="flex h-full w-full flex-col overflow-hidden bg-background md:h-auto md:max-h-[85vh] md:max-w-[640px] md:rounded-lg md:bg-background/90 md:pb-8 md:shadow-card md:backdrop-blur-sm"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="flex shrink-0 flex-col gap-6 px-4 pt-6 md:gap-3 md:px-8 md:pt-0">
-          <div className="flex w-full flex-col items-end gap-0.5">
+        {/* Cover media — looping video (or a static cover image as fallback) */}
+        <div className="relative aspect-[640/376] w-full shrink-0 overflow-hidden bg-black md:rounded-t-lg">
+          {hasVideo ? (
+            <video
+              ref={videoRef}
+              src={caseStudy.coverVideo}
+              className="absolute inset-0 h-full w-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster={caseStudy.coverImage}
+            />
+          ) : (
+            <Image
+              src={caseStudy.coverImage}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="640px"
+              priority
+            />
+          )}
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="absolute right-3 top-3 flex size-6 cursor-pointer items-center justify-center rounded bg-[rgba(49,49,49,0.65)] text-white shadow-[0_4px_4px_0_rgba(0,0,0,0.1)] backdrop-blur-[2px]"
+          >
+            <CloseIcon />
+          </button>
+          {hasVideo && (
             <button
               type="button"
-              onClick={onClose}
-              aria-label="Close"
-              className="-m-2 flex size-11 cursor-pointer items-center justify-center text-secondary-text"
+              onClick={togglePlay}
+              aria-label={isPlaying ? "Pause video" : "Play video"}
+              className="absolute bottom-3 right-3 flex size-7 cursor-pointer items-center justify-center rounded-full bg-[rgba(49,49,49,0.65)] text-white shadow-[0_4px_4px_0_rgba(0,0,0,0.1)] backdrop-blur-[2px]"
             >
-              <CloseIcon />
+              {isPlaying ? <PauseIcon /> : <PlayIcon />}
             </button>
-            <div className="flex w-full flex-col items-start gap-0.5">
-              <p className="text-base font-semibold leading-[1.5] text-default-text">
-                {caseStudy.title}
-              </p>
-              <p className="text-sm leading-[1.5] text-secondary-text">
-                {caseStudy.description}
-              </p>
-            </div>
+          )}
+        </div>
+
+        {/* Content */}
+        <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto px-4 pt-6 pb-12 md:px-8 md:pb-0">
+          <div className="flex w-full flex-col gap-0.5">
+            <p className="text-base font-semibold leading-[1.7] text-default-text">
+              {caseStudy.title}
+            </p>
+            <p className="text-sm leading-[1.7] text-secondary-text">
+              {caseStudy.description}
+            </p>
           </div>
           <div className="h-px w-full bg-border" />
-        </div>
-        <div className="flex min-h-0 flex-col gap-6 overflow-y-auto px-4 pt-6 pb-12 md:px-8 md:pb-0">
-          <div className="flex w-full flex-col gap-2 text-sm md:flex-row">
-            <div className="flex flex-col gap-2 md:w-[220px] md:shrink-0 md:gap-1">
-              <div className="flex items-center gap-1">
-                <p className="w-20 shrink-0 text-secondary-text md:w-[69px]">My role:</p>
-                <p className="whitespace-nowrap text-default-text">{caseStudy.role}</p>
-              </div>
-              <div className="flex items-center gap-1">
-                <p className="w-20 shrink-0 text-secondary-text md:w-[69px]">Company:</p>
-                <p className="whitespace-nowrap text-default-text">{caseStudy.company}</p>
-              </div>
-            </div>
-            <div className="flex flex-col gap-2 md:flex-1 md:gap-1">
-              <div className="flex items-center gap-1">
-                <p className="w-20 shrink-0 text-secondary-text md:w-[51px]">Status:</p>
-                <p className="whitespace-nowrap text-default-text">{caseStudy.status}</p>
-              </div>
-              {caseStudy.impact && (
-                <div className="flex items-center gap-1">
-                  <p className="w-20 shrink-0 text-secondary-text md:w-auto">Impact:</p>
-                  <p className="whitespace-nowrap text-default-text">{caseStudy.impact}</p>
-                </div>
-              )}
-            </div>
-          </div>
-          {imageGroups.length > 0 && (
-            <div className="flex w-full flex-col gap-3 rounded bg-[#2d303d] p-2">
-              {(() => {
-                let cursor = 0;
-                return imageGroups.map((group, groupIndex) => (
-                  <div key={groupIndex} className="flex w-full flex-col gap-1.5">
-                    <p className="text-[11px] leading-[1.34] text-white">
-                      {group.label}
-                    </p>
-                    <div className="flex h-40 w-full gap-3">
-                      {group.images.map((image) => {
-                        const index = cursor++;
-                        return (
-                          <div key={image.src} className="flex h-full flex-1">
-                            {renderZoomButton(image, index)}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ));
-              })()}
-            </div>
-          )}
-          {imageGroups.length === 0 && images.length > 0 && (
-            <div className="flex w-full flex-col gap-2">
-              {chunkPairs(images.map((image, index) => ({ ...image, index }))).map((row, rowIndex) => {
-                const rowHasLabel = row.some((image) => image.label);
-                return (
-                  <div
-                    key={rowIndex}
-                    className={`flex w-full gap-2 ${rowHasLabel ? "h-48" : "h-40"}`}
-                  >
-                    {row.map((image) =>
-                      image.label ? (
-                        <div
-                          key={image.src}
-                          className="flex h-full flex-1 flex-col gap-1 rounded bg-[#e1e5f5] p-2"
-                        >
-                          <span className="text-xs font-medium text-default-text">
-                            {image.label}
-                          </span>
-                          {renderZoomButton(image, image.index)}
-                        </div>
-                      ) : (
-                        <div key={image.src} className="flex h-full flex-1">
-                          {renderZoomButton(image, image.index)}
-                        </div>
-                      ),
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
           <div className="flex flex-col gap-4 text-base text-default-text">
             {caseStudy.body.map((paragraph, index) => (
-              <p key={index} className="leading-[1.5]">
+              <p key={index} className="leading-[1.7]">
                 {paragraph}
               </p>
             ))}
           </div>
           {caseStudy.launchDetails && caseStudy.launchDetails.length > 0 && (
-            <div className="flex w-full flex-col gap-2 text-sm md:flex-row md:flex-wrap md:items-center">
+            <div className="flex w-full flex-col gap-2 text-sm md:flex-row md:flex-wrap md:items-center md:gap-x-4">
               <p className="font-bold text-default-text">
                 {caseStudy.launchLabel ?? "To learn more, visit:"}
               </p>
-              <div className="flex flex-wrap items-center gap-2">
-                {caseStudy.launchDetails.map((detail, index) => (
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                {caseStudy.launchDetails.map((detail) => (
                   <Fragment key={detail.label}>
-                    {index > 0 && (
-                      <span className="text-border-content">|</span>
-                    )}
                     <a
                       href={detail.href}
                       target="_blank"
@@ -278,66 +199,6 @@ export default function CaseStudyModal({
           )}
         </div>
       </div>
-      {expandedIndex !== null && images.length > 0 && (
-        <div
-          className="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-4 bg-black/80 px-4 py-6"
-          onClick={(event) => {
-            event.stopPropagation();
-            setExpandedIndex(null);
-          }}
-        >
-          <button
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation();
-              setExpandedIndex(null);
-            }}
-            aria-label="Close"
-            className="absolute top-3 right-3 flex size-11 cursor-pointer items-center justify-center text-white"
-          >
-            <CloseIcon size={16} />
-          </button>
-          <div className="flex h-[70vh] w-full items-center justify-center">
-            <div className="pointer-events-none relative h-full w-full">
-              <Image
-                src={images[expandedIndex].lightboxSrc ?? images[expandedIndex].src}
-                alt=""
-                fill
-                className="object-contain"
-                sizes="100vw"
-              />
-            </div>
-          </div>
-          {images.length > 1 && (
-            <div
-              className="flex shrink-0 gap-2"
-              onClick={(event) => event.stopPropagation()}
-            >
-              {images.map((image, index) => (
-                <button
-                  key={image.src}
-                  type="button"
-                  onClick={() => setExpandedIndex(index)}
-                  aria-label={`Show image ${index + 1}`}
-                  className={`relative h-14 w-20 shrink-0 cursor-pointer overflow-hidden rounded transition-opacity ${
-                    index === expandedIndex
-                      ? "ring-2 ring-white"
-                      : "opacity-50 hover:opacity-80"
-                  }`}
-                >
-                  <Image
-                    src={image.src}
-                    alt=""
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: image.objectPosition }}
-                  />
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
     </div>,
     document.body,
   );
